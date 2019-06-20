@@ -22,11 +22,11 @@ This trial face SDK is developed by GLASSSIX. The open source is now released un
 
 根据实际使用场景，在x86平台选取1K,2K,5K,10K,20K,50K,100K,200K,500K的基础数据量(baseNum)分别进行测试（K表示1000条）。待查询数据量(queryNum)为基础数据量(baseNum)的十分之一,对每条待查询数据,返回10个相似度最高的结果。将返回的10个结果与通过高耗时暴力搜索方法找到的10个准确值进行对比，计算得到准确率。再用执行搜索任务的总时间除以查询数据量(queryNum)，得到每条数据的搜索时间。
 
-测试平台基本信息:
+#### 测试平台基本信息
 ![avatar](./doc/info.png)
 
 
-测试结果：
+#### 测试结果
 ![avatar](./doc/result.png)
 
 ### Contact Info
@@ -37,11 +37,11 @@ If Glasssix TrialFaceSDK can not meet your business needs, please contact busine
 
 ### Other Documentation
 
-* [SeetaFace2 Detection](./FaceDetection/README.md)
-* [SeetaFace2 Alignment](./FaceAlignment/README.md)
-* [SeetaFace2 Identification](./FaceIdentification/README.md)
-* [SeetaFace2 Cropper](./FaceCropper/README.md)
+* [Longinus](./doc/Longinus.md)
+* [Gaius](./doc/Gaius.md)
+* [Irisvian](./doc/Irisvian.md)
 
 ### Download links
-
-* [Attachment](./attachment/README.md)
+* [Windows](./x86/Windows). Compiled with MSVC 2017.
+* [Ubuntu16.04](./x86/Linux). Compiled with G++ 5.4.
+* [Android on armeabi-v7a](./ARM).
