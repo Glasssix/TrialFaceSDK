@@ -17,21 +17,9 @@ Document, binary module, example and billboard for face SDK of Trial version
 
 This trial face SDK is developed by GLASSSIX. The open source is now released under BSD-2 license (see [LICENSE](LICENSE) for details), which means the codes can be used freely for both acedemic purpose and industrial products.
 
-
-### Test Report
-
-根据实际使用场景，在x86平台选取1K,2K,5K,10K,20K,50K,100K,200K,500K的基础数据量(baseNum)分别进行测试（K表示1000条）。待查询数据量(queryNum)为基础数据量(baseNum)的十分之一,对每条待查询数据,返回10个相似度最高的结果。将返回的10个结果与通过高耗时暴力搜索方法找到的10个准确值进行对比，计算得到准确率。再用执行搜索任务的总时间除以查询数据量(queryNum)，得到每条数据的搜索时间。
-
-#### 测试平台基本信息
-![avatar](./doc/info.png)
-
-
-#### 测试结果
-![avatar](./doc/result.png)
-
 ### Contact Info
 
-If you have any problem on Glasssix TrialFaceSDK, please contact us by sending email to inlmouse@glasssix.com.
+If you have any problem on Glasssix TrialFaceSDK, please contact us by submitting issue, we will respond as soon as possible.
 If Glasssix TrialFaceSDK can not meet your business needs, please contact business@glasssix.com for business cooperation. For more AI services, please visit GLASSSIX official website: http://www.facebeacon.com.
 
 
@@ -42,6 +30,16 @@ If Glasssix TrialFaceSDK can not meet your business needs, please contact busine
 * [Irisvian](./doc/Irisvian.md)
 
 ### Download links
-* [Windows](./x86/Windows). Compiled with MSVC 2017.
-* [Ubuntu16.04](./x86/Linux). Compiled with G++ 5.4.
-* [Android on armeabi-v7a](./ARM).
+* [Windows](./x86/Windows). Compiled with Visual Studio 2017.
+* [Ubuntu18.04](./x86/Linux). Compiled with GCC 7.4.
+
+## Contributors
+
+- Glasssix Research: [J. Zhang](https://github.com/fengye2two)
+
+
+## Copyright
+
+Copyright © 2014 - 2019 Glasssix. All Rights Reserved. 
+
+第六镜科技 版权所有
