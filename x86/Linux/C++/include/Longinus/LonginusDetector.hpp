@@ -6,11 +6,13 @@
 #include <memory>
 #include "BaseLonginusCascade.hpp"
 #include "../Romancia/romancia.hpp"
-#include "../Damocles/Damocles.hpp"
 #include "matcher.hpp"
 #ifdef USE_OPENCV
 #include <opencv2/opencv.hpp>
 #endif
+#ifndef TRIAL
+#include "../Damocles/Damocles.hpp"
+#endif // !TRIAL
 
 namespace glasssix
 {
@@ -157,9 +159,13 @@ namespace glasssix
 			int device_;
 			std::vector<std::shared_ptr<BaseLonginusCascade>> *cascades_;
 			std::unique_ptr<vBanshee> bansheelia_;
-			std::unique_ptr<vDamocles> diodorus_;
 			std::vector<unsigned char> data_;
 			std::unique_ptr<Matcher> matcher_;
+
+#ifndef TRIAL
+			std::unique_ptr<vDamocles> diodorus_;
+#endif // !TRIAL
+
 		};
 	}
 }
