@@ -1,12 +1,12 @@
 
-## 人脸识别V1.0(TrialFaceSDK)
-### 能力介绍
-#### 接口能力
-- **人脸识别**: 输入3*128*128的图片，提取图片中人脸的128维(gaius)特征值
-#### 依赖项
+## Face Recognition V1.0(TrialFaceSDK)
+### Capability Introduction
+#### Interface Capability
+- **Face Recognition**: input face image of 3*128*128(channels * height * width), extract 128-dimension feature vector.
+#### Dependencied
 - **CPU**: MSVCP140、VCRUNTIME140
-### 调用方式
-#### 示例代码一：人脸特征提取模块
+### Invoke Method
+#### Example Code：extract 128-dimension feature vector
 ```c++
 #include <iostream>
 #include "Gaius/GaiusFeature.hpp"
@@ -48,37 +48,37 @@ int main()
 }
 ```
 
-#### Gaius类说明
-##### 成员函数`void GaiusFeature(int device);`
-功能: 设置128维人脸识别方式
+#### Class Description: Gaius
+##### Member Function`void GaiusFeature(int device);`
+Capability: set device(do not support GPU in TrialFaceSDK)
 
-|参数|参数类型|值|说明|备注|
+|Parameter|Parameter Type|Value|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-|device|int|`<0`<br>`>=0`|使用cpu<br>使用设备号为device的gpu| |
+|device|int|`<0`<br>`>=0`|use cpu<br>use gpu numbered by 'device'| |
 
-##### 成员函数`std::vector<std::vector<float>> Forward(const float* inputData, int num, int order = 0);`
-功能: 进行人脸识别，提取128维特征值
+##### Member Function`std::vector<std::vector<float>> Forward(const float* inputData, int num, int order = 0);`
+Capability: extract 128-dimension feature vector
 
-|参数|参数类型|值|说明|备注|
+|Parameter|Parameter Type|Value|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-|inputData|`const float*`|用户输入|人脸图片数据||
-|num|int|`>0`|人脸图片的数量| |
-|order|int||人脸数据的排列方式:NCHW/NHWC|order=0(NCHW),否则(NHWC)|
+|inputData|`const float*`|user input|face image data||
+|num|int|`>0`|number of face images| |
+|order|int||array of face image data:NCHW/NHWC|order=0(NCHW),otherwise(NHWC)|
 
-- 返回值
-`std::vector<std::vector<float>>`类型, vector包含了提取到的128维人脸特征信息，外层维度大小为人脸图片数量，内层维度大小为128。
+- Return Value
+`std::vector<std::vector<float>>`, 128-dimension face feature vector, outer size of vector is the number of face images, inner size of vector is 128.
 
-##### 成员函数`std::vector<std::vector<float>> Forward(const unsigned char* inputData, int num, int order = 0);`
-功能: 进行人脸识别，提取128维特征值
+##### Member Function`std::vector<std::vector<float>> Forward(const unsigned char* inputData, int num, int order = 0);`
+Capability: extract 128-dimension feature vector
 
-|参数|参数类型|值|说明|备注|
+|Parameter|Parameter Type|Value|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-|inputData|`const unsigned char*`|用户输入|人脸图片数据||
-|num|int|`>0`|人脸图片的数量| |
-|order|int||人脸数据的排列方式:NCHW/NHWC|order=0(NCHW),否则(NHWC)|
+|inputData|`const unsigned char*`|user input|face image data||
+|num|int|`>0`|number of face images| |
+|order|int||array of face image data:NCHW/NHWC|order=0(NCHW),otherwise(NHWC)|
 
-- 返回值
-`std::vector<std::vector<float>>`类型, vector包含了提取到的128维人脸特征信息，外层维度大小为人脸图片数量，内层维度大小为128。
+- Return Value
+`std::vector<std::vector<float>>`, 128-dimension face feature vector, outer size of vector is the number of face images, inner size of vector is 128.
 
 #### Gaius Performance
 Test one 3*128*128(channels * height * width) face image on platform i7-8700K, loop 1000 times and calculate average extractTime. 

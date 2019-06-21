@@ -64,7 +64,7 @@ int main()
 |scale|float|`>1`|图像检测缩放比例|一般设置大`>1.1`|
 |min_neighbors|int|`>=0`|人脸区域附近候选框个数|一般设置3|
 |useMultiThreads|bool|true<br>false|使用多线程<br>使用单线程|仅对使用cpu工作时有效, 默认值false|
-|doErlyReject|bool|true<br>false|采取早期拒绝<br>不采取早期拒绝|设置true时可提高检测速度，但检测效果下降，设置false则相反, 默认值false|
+|doEarlyReject|bool|true<br>false|采取早期拒绝<br>不采取早期拒绝|设置true时可提高检测速度，但检测效果下降，设置false则相反, 默认值false|
 
 - 返回值
 `std::vector<FaceRect>`类型, vector中包含了每一个检测到的人脸区域信息

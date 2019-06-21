@@ -1,13 +1,13 @@
 
 
-## 人脸检测V1.0(TrialFaceSDK)
-### 能力介绍
-#### 接口能力
-- **人脸检测**: 检测图片中人脸，并计算出人脸概率、人脸角度、关键点（眼、鼻、嘴）位置等信息
-#### 依赖项
+## Face Detect V1.0(TrialFaceSDK)
+### Capability Introduction
+#### Interface Capability
+- **Face Detect**: Detect face in images, and calculate possibility, angle, position of key points(eyes, nose, mouse)
+#### Dependencies
 - **CPU**: MSVCP140、VCRUNTIME140
-### 调用方式
-#### 示例代码一
+### Invoke Method
+#### Example Code 1st
 ```c++
 #include <opencv2/opencv.hpp>
 #include "Longinus/LonginusDetector.hpp"
@@ -34,54 +34,54 @@ int main()
 	return 0;
 }
 ```
-#### RomanciaDetector类说明
-##### 成员函数`void set(DetectionType detectionType, int device);`
-功能: 设置检测方式
+#### Class Description: RomanciaDetector
+##### Member Function`void set(DetectionType detectionType, int device);`
+Capability: set detect method and device
 
-|参数|参数类型|值|说明|备注|
+|Parameter|Parameter Type|Value|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-|detectionType|enum DetectionType|FRONTALVIEW<br>FRONTALVIEW_REINFORCE<br>MULTIVIEW<br> MULTIVIEW_REINFORCE|正脸快速检测<br>正脸加强检测<br>多角度检测<br>多角度加强检测|检测效果依次变强<br>检测速度依次变慢|
-|device|int|`<0`<br>`>=0`|使用cpu<br>使用设备号为device的gpu| |
+|detectionType|enum DetectionType|FRONTALVIEW<br>FRONTALVIEW_REINFORCE<br>MULTIVIEW<br> MULTIVIEW_REINFORCE||detect effect and time consuming both ascend|
+|device|int|`<0`<br>`>=0`|use cpu<br>use gpu numberd by 'device'| |
 
-##### 成员函数`void load(std::vector<std::string> cascades, int device = -1);`
-功能: 加载分类器模型
+##### Member Function`void load(std::vector<std::string> cascades, int device = -1);`
+Capability: load classifier model
 
-|参数|参数类型|值|说明|备注|
+|Parameter|Parameter Type|Value|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-|cascades|`std::vector<std::string>`|用户输入|vector中每个元素对应一个模型文件路径|xml形式模型文件|
-|device|int|`<0`<br>`>=0`|使用cpu<br>使用设备号为device的gpu| |
+|cascades|`std::vector<std::string>`|user input|each element in vector represents a model file|model file in xml format|
+|device|int|`<0`<br>`>=0`|use cpu<br>use gpu numberd by 'device'| |
 
-##### 成员函数`std::vector<FaceRect> detect(unsigned char *gray, int width, int height, int step, int minSize, float scale, int min_neighbors, bool useMultiThreads = false, bool doEarlyReject = false);`
-功能: 对输入灰度图做人脸检测并标定人脸位置
+##### Member Function`std::vector<FaceRect> detect(unsigned char *gray, int width, int height, int step, int minSize, float scale, int min_neighbors, bool useMultiThreads = false, bool doEarlyReject = false);`
+Capability: detect and locate face in single-channel image
 
-|参数|参数类型|值|说明|备注|
+|Parameter|Parameter Type|Value|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-|gray|`unsigned char *`|用户输入|灰度图数据地址| 需连续存储|
-|width|int|用户输入|灰度图宽| |
-|height|int|用户输入|灰度图高| |
-|step|int|用户输入|灰度图每一行像素所占字节数| |
-|minSize|int|有效值`>=24`|最小检测窗|检出的人脸区域`>=minSize`|
-|scale|float|`>1`|图像检测缩放比例|一般设置大`>1.1`|
-|min_neighbors|int|`>=0`|人脸区域附近候选框个数|一般设置3|
-|useMultiThreads|bool|true<br>false|使用多线程<br>使用单线程|仅对使用cpu工作时有效, 默认值false|
-|doErlyReject|bool|true<br>false|采取早期拒绝<br>不采取早期拒绝|设置true时可提高检测速度，但检测效果下降，设置false则相反, 默认值false|
+|gray|`unsigned char *`|user input|address of single-channel image data| image data should store continuously|
+|width|int|user input|width of single-channel image| |
+|height|int|user input|height of single-channel image| |
+|step|int|user input|bytes of each row in single-channel image| |
+|minSize|int|effect value`>=24`|smallest detect window size|detected face area`>=minSize`|
+|scale|float|`>1`|expand or shrink ratio of image|`>1.1`|
+|min_neighbors|int|`>=0`|candidate boxes around face area|3 by default|
+|useMultiThreads|bool|true<br>false|use multi-thread<br>use single-thread|take effect when using cpu, false by default|
+|doEarlyReject|bool|true<br>false|adopt early reject<br>don't adopt|detect speed promote, with detect effect descend, false by default|
 
-- 返回值
-`std::vector<FaceRect>`类型, vector中包含了每一个检测到的人脸区域信息
+- Return Value
+`std::vector<FaceRect>`, FaceRect contains detected face area information
 
-###### FaceRect类型说明
+###### Struct Description: FaceRect
 
-|成员变量|类型|说明|备注|
+|Member Variable|Type|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|
-|x|int|人脸区域左上角x坐标| |
-|y|int|人脸区域左上角y坐标| |
-|width|int|人脸区域宽度| |
-|height|int|人脸区域高度| |
-|neighbors|int|人脸区域候选框个数| 一般作为得分的判断|
-|confidence|double|人脸区域置信度| 一般不作为得分的判断|
+|x|int|x coordinate of left-top corner| |
+|y|int|y coordinate of left-top corner| |
+|width|int|width of face area| |
+|height|int|height of face area| |
+|neighbors|int|number of candidate boxes around face area||
+|confidence|double|possibility to be a face||
 
 
-#### 示例代码二
+#### Example Code 2nd:
 ```c++
 #include <opencv2/opencv.hpp>
 #include <iostream>
@@ -156,66 +156,66 @@ int main()
 }
 ```
 
-##### 成员函数`std::vector<FaceRectwithFaceInfo> detect(unsigned char *gray, int width, int height, int step, int minSize, float scale, int min_neighbors, int order = 0, bool useMultiThreads = false, bool doEarlyReject = false);`
-功能: 对输入灰度图做人脸检测并标定人脸位置
+##### Member Function`std::vector<FaceRectwithFaceInfo> detect(unsigned char *gray, int width, int height, int step, int minSize, float scale, int min_neighbors, int order = 0, bool useMultiThreads = false, bool doEarlyReject = false);`
+Capability: detect and locate face in single-channel image
 
-|参数|参数类型|值|说明|备注|
+|Parameter|Parameter Type|Value|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-|gray|`unsigned char *`|用户输入|灰度图数据地址| 需连续存储|
-|width|int|用户输入|灰度图宽| |
-|height|int|用户输入|灰度图高| |
-|step|int|用户输入|灰度图每一行像素所占字节数| |
-|minSize|int|有效值`>=24`|最小检测窗|检出的人脸区域`>=minSize`|
-|scale|float|`>1`|图像检测缩放比例|一般设置大`>1.1`|
-|min_neighbors|int|`>=0`|人脸区域附近候选框个数|一般设置3|
-|order|int||人脸数据的排列方式:NCHW/NHWC|order=0(NCHW),否则(NHWC)|
-|useMultiThreads|bool|true<br>false|使用多线程<br>使用单线程|仅对使用cpu工作时有效, 默认值false|
-|doErlyReject|bool|true<br>false|采取早期拒绝<br>不采取早期拒绝|设置true时可提高检测速度，但检测效果下降，设置false则相反, 默认值false|
+|gray|`unsigned char *`|user input|address of single-channel image data| image data should store continuously|
+|width|int|user input|width of single-channel image| |
+|height|int|user input|height of single-channel image| |
+|step|int|user input|bytes of each row in single-channel image| |
+|minSize|int|effect value`>=24`|smallest detect window size|detected face area`>=minSize`|
+|scale|float|`>1`|expand or shrink ratio of image|`>1.1`|
+|min_neighbors|int|`>=0`|candidate boxes around face area|3 by default|
+|order|int||array of face image data:NCHW/NHWC|order=0(NCHW),otherwise(NHWC)|
+|useMultiThreads|bool|true<br>false|use multi-thread<br>use single-thread|take effect when using cpu, false by default|
+|doErlyReject|bool|true<br>false|adopt early reject<br>don't adopt|detect speed promote, with detect effect descend, false by default|
 
-- 返回值
-`std::vector<FaceRectwithFaceInfo>`类型, vector中包含了每一个检测到的人脸区域、关键点、人脸概率信息
+- Return Value
+`std::vector<FaceRectwithFaceInfo>`Type, FaceRectwithFaceInfo contains information: detected face area, key points, possibility
 
-##### 成员函数`void extract_faceinfo(std::vector<FaceRectwithFaceInfo> face_info, std::vector<std::vector<int>>& bboxes, std::vector<std::vector<int>>& landmarks);`
-功能: 提取出矩形人脸框和人脸关键点，存放至bboxes和landmarks
+##### Member Function`void extract_faceinfo(std::vector<FaceRectwithFaceInfo> face_info, std::vector<std::vector<int>>& bboxes, std::vector<std::vector<int>>& landmarks);`
+Capability: extract face area to save in bboxes, and extract key points to save in landmarks
 
-|参数|参数类型|值|说明|备注|
+|Parameter|Parameter Type|Value|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-|face_info|`std::vector<FaceRectwithFaceInfo>`| |检测到的人脸信息| |
-|bboxes|`std::vector<std::vector<int>>`| |bboxes.size():检测到的人脸个数，bboxes[i][0]:x，bboxes[i][1]:y，bboxes[i][2]:width，bboxes[i][3]:height| |
-|landmarks|`std::vector<std::vector<int>>`| |landmarks.size():检测到的人脸个数，landmarks[i][0]:x_lefteye，landmarks[i][1]:y_lefteye，landmarks[i][2]:x_righteye，landmarks[i][3]:y_righteye，landmarks[i][4]:x_nose，landmarks[i][5]:y_nose，landmarks[i][6]:x_leftmouse，landmarks[i][7]:y_leftnouse，landmarks[i][8]:x_rightmouth，landmarks[i][9]:y_rightmouth| |
+|face_info|`std::vector<FaceRectwithFaceInfo>`| |detected face information| |
+|bboxes|`std::vector<std::vector<int>>`| |bboxes.size(): number of faces detected, bboxes[i][0]:x，bboxes[i][1]:y，bboxes[i][2]:width，bboxes[i][3]:height| |
+|landmarks|`std::vector<std::vector<int>>`| |landmarks.size():number of faces detected, landmarks[i][0]:x_lefteye，landmarks[i][1]:y_lefteye，landmarks[i][2]:x_righteye，landmarks[i][3]:y_righteye，landmarks[i][4]:x_nose，landmarks[i][5]:y_nose，landmarks[i][6]:x_leftmouse，landmarks[i][7]:y_leftnouse，landmarks[i][8]:x_rightmouth，landmarks[i][9]:y_rightmouth| |
 
-##### 成员函数`void extract_biggest_faceinfo(std::vector<FaceRectwithFaceInfo> face_info, std::vector<std::vector<int>>& bboxes, std::vector<std::vector<int>>& landmarks);`
-功能: 提取出面积最大人脸的矩形人脸框和人脸关键点，存放至bboxes和landmarks
+##### Member Function`void extract_biggest_faceinfo(std::vector<FaceRectwithFaceInfo> face_info, std::vector<std::vector<int>>& bboxes, std::vector<std::vector<int>>& landmarks);`
+Capability: extract biggest face area to save in bboxes, and extract key points of biggest face area to save in landmarks
 
-|参数|参数类型|值|说明|备注|
+|Parameter|Parameter Type|Value|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-|face_info|`std::vector<FaceRectwithFaceInfo>`| |检测到的人脸信息| |
-|bboxes|std::vector<std::vector<int>>| |同extract_faceinfo| |
-|landmarks|std::vector<std::vector<int>>| |同extract_faceinfo| |
+|face_info|`std::vector<FaceRectwithFaceInfo>`| |detected face information| |
+|bboxes|std::vector<std::vector<int>>| |bboxes.size(): number of faces detected, bboxes[i][0]:x，bboxes[i][1]:y，bboxes[i][2]:width，bboxes[i][3]:height| |
+|landmarks|std::vector<std::vector<int>>| |landmarks.size():number of faces detected, landmarks[i][0]:x_lefteye，landmarks[i][1]:y_lefteye，landmarks[i][2]:x_righteye，landmarks[i][3]:y_righteye，landmarks[i][4]:x_nose，landmarks[i][5]:y_nose，landmarks[i][6]:x_leftmouse，landmarks[i][7]:y_leftnouse，landmarks[i][8]:x_rightmouth，landmarks[i][9]:y_rightmouth| |
 
-##### 成员函数`std::vector<unsigned char> alignFace(const unsigned char* ori_image, int n, int channels, int height, int width, std::vector<std::vector<int>> bbox, std::vector<std::vector<int> >landmarks);`
-功能: 对齐人脸
+##### Member Function`std::vector<unsigned char> alignFace(const unsigned char* ori_image, int n, int channels, int height, int width, std::vector<std::vector<int>> bbox, std::vector<std::vector<int> >landmarks);`
+Capability: Align Face
 
-|参数|参数类型|值|说明|备注|
+|Parameter|Parameter Type|Value|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-|ori_image|`const unsigned char*`| |用于检测人脸的原始灰度图片| |
-|n|`int`| |原始灰度图片张数，设为1| |
-|channels|`int`| |原始灰度图片通道数| |
-|height|`int`| |原始灰度图片高度| |
-|width|`int`| |原始灰度图片宽度| |
-|bbox|`std::vector<std::vector<int>>`| |同extract_faceinfo| |
-|landmarks|`std::vector<std::vector<int>>`| |同extract_faceinfo| |
+|ori_image|`const unsigned char*`| |single-channel image used for detect face area| |
+|n|`int`| |number of single-channel image| |
+|channels|`int`| |channel of single-channel image| |
+|height|`int`| |height of single-channel image| |
+|width|`int`| |width of single-channel image| |
+|bbox|`std::vector<std::vector<int>>`| |bboxes.size(): number of faces detected, bboxes[i][0]:x，bboxes[i][1]:y，bboxes[i][2]:width，bboxes[i][3]:height| |
+|landmarks|`std::vector<std::vector<int>>`| |landmarks.size():number of faces detected, landmarks[i][0]:x_lefteye，landmarks[i][1]:y_lefteye，landmarks[i][2]:x_righteye，landmarks[i][3]:y_righteye，landmarks[i][4]:x_nose，landmarks[i][5]:y_nose，landmarks[i][6]:x_leftmouse，landmarks[i][7]:y_leftnouse，landmarks[i][8]:x_rightmouth，landmarks[i][9]:y_rightmouth| |
 
-- 返回值
-`std::vector<unsigned char>`, vector中包含了每一个对齐后的人脸灰度图像数据，通过OpenCV可显示
+- Return Value
+`std::vector<unsigned char>`, alignedFace data stored in vector
 
 
-## 人脸匹配
-### 能力介绍
-#### 接口能力
-- **人脸匹配**: 输入连续视频序列检测结果，匹配前后帧人脸是否属于同一个人。仅在摄像机机位不变的连续视频中有意义。
-### 调用方式
-#### 示例代码三
+## Face Match
+### Capability Introduction
+#### Interface Capability
+- **Face Match**: input detect result of consecutive video frame, then judge whether faces belong to a same person. Take effect when camera position is fixed.
+### Invoke Method
+#### Example Code 3rd:
 ```c++
 #include <iostream>
 #include <opencv2/opencv.hpp>
@@ -276,40 +276,40 @@ int main(int argc, char** argv)
 	return 0;
 }
 ```
-#### Matcher类说明
-##### 成员函数`std::vector<Match_Retval> match(std::vector<FaceRect> &faceRect, const int frame_extract_frequency);`
-功能: 为每个输入的检测到的人脸框赋uuid，判定其是否是第一次出现在视频中
+#### Class Description: Matcher
+##### Member Function`std::vector<Match_Retval> match(std::vector<FaceRect> &faceRect, const int frame_extract_frequency);`
+Capability: set an uuid for each input face area, judge whether it's new in video frames.
 
-|参数|参数类型|值|说明|备注|
+|Parameter|Parameter Type|Value|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-|faceRect|`std::vector<FaceRect>`|--|通常由LonginusDetector中的detect函数得到|
-|frame_extract_frequency|int|大于等于1的正整数|支持对视频的抽帧，该值为外部处理时的抽帧间隔| |
+|faceRect|`std::vector<FaceRect>`|--|get by function LonginusDetector.detect()|
+|frame_extract_frequency|int|positive integer|interval between two frames to be dealt with| |
 
-- 返回值
-`std::vector<Match_Retval>`类型, vector中包含了每一个检测到的人脸区域信息以及uuid
+- Return Value
+`std::vector<Match_Retval>`Type, Match_Retval contains detected face area information and uuid
 
-##### 成员函数`std::vector<Match_Retval> match(std::vector<FaceRectwithFaceInfo> &faceRect, const int frame_extract_frequency);`
-功能: 为每个输入的检测到的人脸框赋uuid，判定其是否是第一次出现在视频中
+##### Member Function`std::vector<Match_Retval> match(std::vector<FaceRectwithFaceInfo> &faceRect, const int frame_extract_frequency);`
+Capability: set an uuid for each input face area, judge whether it's new in video frames.
 
-|参数|参数类型|值|说明|备注|
+|Parameter|Parameter Type|Value|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|:--------:|
-|faceRect|`std::vector<FaceRectwithFaceInfo>`|--|通常由LonginusDetector中的detect函数得到|
-|frame_extract_frequency|int|大于等于1的正整数|支持对视频的抽帧，该值为外部处理时的抽帧间隔| |
+|faceRect|`std::vector<FaceRectwithFaceInfo>`|--|get by function LonginusDetector.detect()|
+|frame_extract_frequency|int|positive integer|interval between two frames to be dealt with| |
 
-- 返回值
-`std::vector<Match_Retval>`类型, vector中包含了每一个检测到的人脸区域信息以及uuid
+- Return Value
+`std::vector<Match_Retval>`Type, Match_Retval contains detected face area information and uuid
 
-###### Match_Retval类型说明
+###### Struct Description: Match_Retval
 
-|成员变量|类型|说明|备注|
+|Member Variable|Type|Illustration|Remark|
 |:--------:|:--------:|:--------:|:--------:|
-|rect|FaceRect|人脸区域| |
-|id|std::string|对该人脸框赋值的uuid，通常为32位| |
-|is_new|bool|对该人脸区域的判定是否为一个新的人脸序列| |
+|rect|FaceRect|face area| |
+|id|std::string|32bit uuid| |
+|is_new|bool|flag to judge whether this face area belongs to a new person| |
 
 
 
-#### 示例代码四
+#### Example Code 4th:
 ```c++
 #include <opencv2/opencv.hpp>
 #include "InternalRomanciaCascade.hpp"

@@ -2,6 +2,8 @@
 ### Capability Introduction
 #### Interface Capability
 - **Face Search**: Search a given face from image library, return topK most similar faces.
+#### Dependencied
+- **CPU**: MSVCP140、VCRUNTIME140
 ### Use Cases
 1. Size of image library equals 1.
    invoke function searchVector() directly.
