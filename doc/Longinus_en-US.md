@@ -336,7 +336,7 @@ int main()
 ```
 
 #### Longinus Performance
-Test three face images(size: 640*480,1280*720,1920*1080) on platform i7-8700K: loop 1000 times and calculate average detect time. 
+Test three face images(size: 640 \* 480,1280 \* 720,1920 \* 1080) on platform i7-8700K: loop 1000 times and calculate average detect time. 
 
 ##### Basic Information of Test Platform
 Item | Description
@@ -351,46 +351,13 @@ SIMD Instruction Set | AVX2 |
 
 ##### Test Report
 
-<table>
-   <tr>
-      <td>Image Size</td>
-      <td>detect time (ms)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-   </tr>
-   <tr>
-      <td></td>
-      <td>FRONTALVIEW</td>
-      <td>FRONTALVIEW_REINFORCE</td>
-      <td>MULTIVIEW</td>
-      <td>MULTIVIEW_REINFORCE</td>
-   </tr>
-   <tr>
-      <td>640*480</td>
-      <td>49.279</td>
-      <td>87.724</td>
-      <td>114.125</td>
-      <td>129.541</td>
-   </tr>
-   <tr>
-      <td>1280*720</td>
-      <td>109.317</td>
-      <td>142.942</td>
-      <td>195.54</td>
-      <td>229.027</td>
-   </tr>
-   <tr>
-      <td>1920*1080</td>
-      <td>242.114</td>
-      <td>376.091</td>
-      <td>537.808</td>
-      <td>682.978</td>
-   </tr>
-   <tr>
-      <td></td>
-   </tr>
-</table>
+minSize=48, scale=1.2, minNeighbors=3, useMultiThreads=false, doEarlyReject=false
+Detect Time(ms)：
+Image_Size | FRONTALVIEW | FRONTALVIEW_REINFORCE | MULTIVIEW | MULTIVIEW_REINFORCE
+:-:|:-:|:-:|:-:|:-:
+640 \* 480 |49.279 | 87.724 | 114.125 | 129.541
+1280 \* 720 | 109.317 | 142.942 | 195.54 | 229.027
+1920 \* 1080 | 242.114 | 376.091 | 537.808 | 682.978
 
 ![avatar](./640.jpg)
 ![avatar](./720.jpg)

@@ -336,7 +336,7 @@ int main()
 ```
 
 #### Longinus性能表现
-在i7-8700K平台使用640*480,1280*720,1920*1080三张人脸图片分别进行测试，每张图片循环1000次计算得到平均检测时间。
+在i7-8700K平台使用640 \* 480,1280 \* 720,1920 \* 1080三张人脸图片分别进行测试，每张图片循环1000次计算得到平均检测时间。
 
 ##### 测试平台基本信息
 项目 | 描述
@@ -351,47 +351,13 @@ SIMD指令集 | AVX2 |
 
 
 ##### 测试结果
-
-<table>
-   <tr>
-      <td>图片大小</td>
-      <td>检测时间(ms)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-   </tr>
-   <tr>
-      <td></td>
-      <td>FRONTALVIEW</td>
-      <td>FRONTALVIEW_REINFORCE</td>
-      <td>MULTIVIEW</td>
-      <td>MULTIVIEW_REINFORCE</td>
-   </tr>
-   <tr>
-      <td>640*480</td>
-      <td>49.279</td>
-      <td>87.724</td>
-      <td>114.125</td>
-      <td>129.541</td>
-   </tr>
-   <tr>
-      <td>1280*720</td>
-      <td>109.317</td>
-      <td>142.942</td>
-      <td>195.54</td>
-      <td>229.027</td>
-   </tr>
-   <tr>
-      <td>1920*1080</td>
-      <td>242.114</td>
-      <td>376.091</td>
-      <td>537.808</td>
-      <td>682.978</td>
-   </tr>
-   <tr>
-      <td></td>
-   </tr>
-</table>
+minSize=48, scale=1.2, minNeighbors=3, useMultiThreads=false, doEarlyReject=false
+Detect Time(ms)：
+Image_Size | FRONTALVIEW | FRONTALVIEW_REINFORCE | MULTIVIEW | MULTIVIEW_REINFORCE
+:-:|:-:|:-:|:-:|:-:
+640 \* 480 |49.279 | 87.724 | 114.125 | 129.541
+1280 \* 720 | 109.317 | 142.942 | 195.54 | 229.027
+1920 \* 1080 | 242.114 | 376.091 | 537.808 | 682.978
 
 ![avatar](./640.jpg)
 ![avatar](./720.jpg)
