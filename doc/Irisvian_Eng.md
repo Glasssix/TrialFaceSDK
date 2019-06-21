@@ -1,26 +1,25 @@
-## 人脸搜索V1.0(TrialFaceSDK)
-### 能力介绍
-#### 接口能力
-- **人脸搜索**: 给定一张人脸图片，从人脸库中找出最相似的K张图片，K值可修改。
-### 使用场景
-1. 人脸库数量等于1
+## Face Search V1.0(TrialFaceSDK)
+### Capability Introduction
+#### Interface Capability
+- **Face Search**: Search a given face from image library, return topK most similar faces.
+### Use Cases
+1. Size of image library equals 1.
+   invoke function searchVector() directly.
 
-    直接调用searchVector()
-
-2. 人脸库数量大于1，构建并搜索，不保存构建的ngraph
+2. Size of image library is larger than 1. Build ngraph, then search. Drop ngraph when program exit.
 
     buildGraph()->optimizeGraph()->searchVector()
 
-3. 人脸库数量大于1，构建并保存构建的ngraph，然后搜索
+3. Size of image library is larger than 1. Build and save ngraph, then search.
 
     buildGraph()->saveGraph()->optimizeGraph()->searchVector()
 
-4. 人脸库数量大于1，不构建，从本地读取之前构建的ngraph，然后搜索(前提条件：人脸库未发生变化)
+4. Size of image library is larger than 1. Load ngraph from disk, then search. Image library should remain the same when ngraph was generated.
 
     loadGraph()->optimizeGraph()->searchVector()
 
-### 调用方式
-#### 示例代码一：人脸库数量等于1,直接调用searchVector()进行人脸验证(face verification 1:1)
+### Invoke Method
+#### Example Code 1st: Size of image library equals 1. Invoke function searchVector() directly to accomplish face verification(1:1) task.
 ```c++
 #include "Irisvian/IrisvianSearch.hpp"
 #include <iostream>
@@ -74,7 +73,7 @@ int main(int argc, char *argv[])
 }
 ```
 
-#### 示例代码二：人脸库数量大于1，构建并搜索，不保存构建的ngraph
+#### Example Code 2nd：Size of image library is larger than 1. Build ngraph, then search. Drop ngraph when program exit.
 ```c++
 #include "Irisvian/IrisvianSearch.hpp"
 #include <iostream>
@@ -119,7 +118,7 @@ int main(int argc, char *argv[])
 }
 ```
 
-#### 示例代码三：人脸库数量大于1，构建并保存构建的ngraph，然后搜索
+#### Example Code 3rd: Size of image library is larger than 1. Build and save ngraph, then search.
 ```c++
 #include "Irisvian/IrisvianSearch.hpp"
 #include <iostream>
@@ -172,7 +171,7 @@ int main(int argc, char *argv[])
 }
 ```
 
-#### 示例代码四：人脸库数量大于1，不构建，从本地读取之前构建的ngraph，然后搜索(前提条件：人脸库未发生变化)
+#### Example Code 4th: Size of image library is larger than 1. Load ngraph from disk, then search. Image library should remain the same when ngraph was generated.
 ```c++
 #include "Irisvian/IrisvianSearch.hpp"
 #include <iostream>
@@ -236,113 +235,112 @@ int main(int argc, char *argv[])
 
 
 
-#### IrisvianSearch类说明
+#### Class Description: IrisvianSearch
 
-##### 成员函数`IrisvianSearch(int dimension);`
-功能: 构造Index类
+##### Member Function`IrisvianSearch(int dimension);`
+Capability: Construct class Index with dimension
 
-参数|参数类型|值|说明|备注
+Parameter|Parameter Type|Value|Illustration|Remark
 :--:|:--:|:--:|:--:|:--:
-dimension|int|baseData中单个人脸特征向量的维度|||
+dimension|int|length of single face feature vector|||
 
-##### 成员函数`IrisvianSearch(const std::vector<const float*> *baseData, int dimension);`
-功能: 用base_data构造Index类
+##### Member Function`IrisvianSearch(const std::vector<const float*> *baseData, int dimension);`
+Capability: Construct class Index with baseData and dimension
 
-参数|参数类型|值|说明|备注
+Parameter|Parameter Type|Value|Illustration|Remark
 :--:|:--:|:--:|:--:|:--:
-baseData|const std::vector<const float*> *|用户输入|人脸库数据|用户可通过读取本地文件、数据库等多种方式填充baseData
-dimension|int|baseData中单个人脸特征向量的维度|||
+baseData|const std::vector<const float*> *|user input|image library|
+dimension|int|length of single face feature vector|||
 
-##### 成员函数`BuildGraph();`
-功能: 构建nGraph
+##### Member Function`BuildGraph();`
+Capability: build nGraph
 
-##### 成员函数`BuildGraph(const std::vector<const float*> *baseData);`
-功能: 构建nGraph
+##### Member Function`BuildGraph(const std::vector<const float*> *baseData);`
+Capability: build nGraph with baseData
 
-参数|参数类型|值|说明|备注
+Parameter|Parameter Type|Value|Illustration|Remark
 :--:|:--:|:--:|:--:|:--:
-baseData|const std::vector<const float*> *|用户输入|人脸库数据|用户可通过读取本地文件、数据库等多种方式填充baseData
+baseData|const std::vector<const float*> *|user input|image library|
 
-##### 成员函数`void SaveGraph(const char *graphPath);`
-功能: 保存构建完成的nGraph
+##### Member Function`void SaveGraph(const char *graphPath);`
+Capability: save nGraph for future use
 
-参数|参数类型|值|说明|备注
+Parameter|Parameter Type|Value|Illustration|Remark
 :--:|:--:|:--:|:--:|:--:
-graphPath|const char *|用户输入|nGraph构建完成后的保存路径|
+graphPath|const char *|user input|path of nGraph to be saved|
 
-##### 成员函数`void SaveGraph(const char *graphPath, const char *basedataPath);`
-功能: 保存构建完成的nGraph以及baseData
+##### Member Function`void SaveGraph(const char *graphPath, const char *basedataPath);`
+Capability: save nGraph and baseData for future use
 
-参数|参数类型|值|说明|备注
+Parameter|Parameter Type|Value|Illustration|Remark
 :--:|:--:|:--:|:--:|:--:
-graphPath|const char *|用户输入|nGraph构建完成后的保存路径|
-basedataPath|const char *|用户输入|baseData保存路径|
+graphPath|const char *|user input|path of nGraph to be saved|
+basedataPath|const char *|user input|path of baseData to be saved|
 
-##### 成员函数`void LoadGraph(const char* graphPath);`
-功能: 开始搜索前，从本地加载baseData。
+##### Member Function`void LoadGraph(const char* graphPath);`
+Capability: Load nGraph from disk before search
 
-参数|参数类型|值|说明|备注
+Parameter|Parameter Type|Value|Illustration|Remark
 :--:|:--:|:--:|:--:|:--:
-graphPath|const char *|用户输入|nGraph构建完成后的保存路径|
+graphPath|const char *|user input|path of nGraph|
 
-##### 成员函数`void LoadGraph(const char* graphPath, const char *basedataPath);`
-功能: 开始搜索前，从本地加载baseData。
+##### Member Function`void LoadGraph(const char* graphPath, const char *basedataPath);`
+Capability: Load nGraph and baseData from disk before search
 
-参数|参数类型|值|说明|备注
+Parameter|Parameter Type|Value|Illustration|Remark
 :--:|:--:|:--:|:--:|:--:
-graphPath|const char *|用户输入|nGraph构建完成后的保存路径|
-basedataPath|const char *|用户输入|baseData保存路径|
+graphPath|const char *|user input|path of nGraph|
+basedataPath|const char *|user input|path of baseData|
 
 
-##### 成员函数`void optimizeGraph();`
-功能: 开始搜索前，对nGraph进行优化。
+##### Member Function`void optimizeGraph();`
+Capability: optimize nGraph before search
 
 
-##### 成员函数`void searchVector(const vector<const float*>* queryData, unsigned topK, std::vector<std::vector<unsigned>> &returnIDs, std::vector<std::vector<float>> &returnDistancesInPercentage);`
-功能: 执行搜索任务
+##### Member Function`void searchVector(const vector<const float*>* queryData, unsigned topK, std::vector<std::vector<unsigned>> &returnIDs, std::vector<std::vector<float>> &returnDistancesInPercentage);`
+Capability: execute search task
 
-参数|参数类型|值|说明|备注
+Parameter|Parameter Type|Value|Illustration|Remark
 :--:|:--:|:--:|:--:|:--:
-queryData|const vector<const float*>*|用户输入|待查询的人脸数据|用户可通过读取本地文件、数据库等多种方式填充queryData
-topK|unsigned|用户输入|为每个query对象返回topK个最相似结果|topK不应大于人脸库中的数量baseNum；如果人脸库中只有1张人脸，则进行1V1的搜索，此时topK参数无效，可随便指定。
-returnIDs|std::vector<std::vector<unsigned>>|输出的ID|在baseData中找到的与queryData相似的人脸的ID|人脸ID在baseData中为0,1,2,3···
-returnDistancesInPercentage|std::vector<std::vector<float>>|输出的相似度|在baseData中找到的与queryData相似的人脸的相似度，以百分比表示|
+queryData|const vector<const float*>*|user input|faces to be searched|
+topK|unsigned|user input|return topK most similar results for each face|topK should be less than baseNum. If only 1 image exists in image library, execute face verification task(1:1 search), and topK will be useless in this situation.
+returnIDs|std::vector<std::vector<unsigned>>|sequence number of baseData, such as 0,1,2,3···|IDs for topK most similar results in baseData|
+returnDistancesInPercentage|std::vector<std::vector<float>>|float value between 0 and 1|similarity(L2,Cosine...) of returned topK most similar results| |
 		
 
-##### 成员函数`void SaveResult(const char* resultPath, std::vector<std::vector<unsigned> > &returnIDs);`
-功能: 保存搜索得到的人脸ID
+##### Member Function`void SaveResult(const char* resultPath, std::vector<std::vector<unsigned> > &returnIDs);`
+Capability: save IDs of topK most similar results
 
-参数|参数类型|值|说明|备注
+Parameter|Parameter Type|Value|Illustration|Remark
 :--:|:--:|:--:|:--:|:--:
-resultPath|const char*|用户输入|搜索完成后的保存路径|
-returnIDs|std::vector<std::vector<unsigned>>|输出的ID|在baseData中找到的与queryData相似的人脸的ID|
+resultPath|const char*|user input|path of returnIDs to be saved|
+returnIDs|std::vector<std::vector<unsigned>>|sequence number of baseData, such as 0,1,2,3···| |
 
-##### 成员函数`void SaveResult(std::string resultPath, std::vector<std::vector<unsigned> > &returnIDs);`
-功能: 保存搜索得到的人脸ID
+##### Member Function`void SaveResult(std::string resultPath, std::vector<std::vector<unsigned> > &returnIDs);`
+Capability: save IDs of topK most similar results
 
-参数|参数类型|值|说明|备注
+Parameter|Parameter Type|Value|Illustration|Remark
 :--:|:--:|:--:|:--:|:--:
-resultPath|std::string|用户输入|搜索完成后的保存路径|
-returnIDs|std::vector<std::vector<unsigned>>|输出的ID|在baseData中找到的与queryData相似的人脸的ID|
+resultPath|std::string|user input|path of returnIDs to be saved|
+returnIDs|std::vector<std::vector<unsigned>>|sequence number of baseData, such as 0,1,2,3···| |
 
-#### Irisvian性能表现
-在i7-8700K平台选取1K,2K,5K,10K,20K,50K,100K,200K,500K的128维基础数据量(baseNum)分别进行测试（K表示1000条）。待查询数据量(queryNum)为基础数据量(baseNum)的十分之一,对每条待查询数据,返回10个相似度最高的结果。将返回的10个结果与通过高耗时暴力搜索方法找到的10个准确值进行对比，计算得到准确率。再用执行搜索任务的总时间除以查询数据量(queryNum)，得到每条数据的搜索时间。
+#### Irisvian Performance
+Test 128-dimension feature vector on platform i7-8700K, with baseNum of 1K,2K,5K,10K,20K,50K,100K,200K,500K(k represents 1000), queryNum is one tenth of baseNum, return top 10 most similar results for each searched face. Accuracy is calculated by compare our results with time-consuming-brute-force results.
+##### Basic Information of Test Platform
+Item | Description
+:-:|:-:
+Operating System | Windows 10 Enterprise 64bit |
+Processor | Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz |
+Core and Thread | 6 Cores and 12 Threads |
+RAM | 32GB |
+Compiler | MSVC 19.5 |
+OpenMP | Yes |
+SIMD Instruction Set | AVX2 |
 
-##### 测试平台基本信息
-项目 | 描述
--|-
-操作系统 | Windows 10 企业版 64位 |
-处理器 | Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz |
-处理器核心数 | 6核12线程 |
-内存 | 32GB |
-编译器 | MSVC 19.5 |
-OpenMP | 开启 |
-SIMD指令集 | AVX2 |
 
-
-##### 测试结果
-数据量 | 构建时间(s) | 搜索时间(ms) | 准确率(\%) | 峰值内存(MB)
--|-|-|-|-
+##### Test Report
+baseNum | buildTime(s) | searchTime(ms) | accuracy(\%) | Peak Memory Usage(MB)
+:-:|:-:|:-:|:-:|:-:
 1k | 0.080 | 0.010 | 100 | 6 | 
 2k | 0.141 | 0.015 | 100 | 11 | 
 5k | 0.493 | 0.020 | 99.92 | 22 | 

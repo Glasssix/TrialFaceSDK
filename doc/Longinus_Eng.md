@@ -334,3 +334,66 @@ int main()
 	return 0;
 }
 ```
+
+#### Longinus Performance
+Test three face images(size: 640*480,1280*720,1920*1080) on platform i7-8700K: loop 1000 times and calculate average detect time. 
+
+##### Basic Information of Test Platform
+Item | Description
+:-:|:-:
+Operating System | Windows 10 Enterprise 64bit |
+Processor | Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz |
+Core and Thread | 6 Cores and 12 Threads |
+RAM | 32GB |
+Compiler | MSVC 19.5 |
+OpenMP | Yes |
+SIMD Instruction Set | AVX2 |
+
+##### Test Report
+
+<table>
+   <tr>
+      <td>Image Size</td>
+      <td>detect time (ms)</td>
+      <td></td>
+      <td></td>
+      <td></td>
+   </tr>
+   <tr>
+      <td></td>
+      <td>FRONTALVIEW</td>
+      <td>FRONTALVIEW_REINFORCE</td>
+      <td>MULTIVIEW</td>
+      <td>MULTIVIEW_REINFORCE</td>
+   </tr>
+   <tr>
+      <td>640*480</td>
+      <td>49.279</td>
+      <td>87.724</td>
+      <td>114.125</td>
+      <td>129.541</td>
+   </tr>
+   <tr>
+      <td>1280*720</td>
+      <td>109.317</td>
+      <td>142.942</td>
+      <td>195.54</td>
+      <td>229.027</td>
+   </tr>
+   <tr>
+      <td>1920*1080</td>
+      <td>242.114</td>
+      <td>376.091</td>
+      <td>537.808</td>
+      <td>682.978</td>
+   </tr>
+   <tr>
+      <td></td>
+   </tr>
+</table>
+
+![avatar](./640.jpg)
+![avatar](./720.jpg)
+![avatar](./1080.jpg)
+
+Declaration: Test face images come from Internet, all rights belong to original Author. If we infringed your legal rights, please contact us to erase images. Thanks!

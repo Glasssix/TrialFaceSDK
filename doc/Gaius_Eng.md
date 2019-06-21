@@ -2,7 +2,7 @@
 ## 人脸识别V1.0(TrialFaceSDK)
 ### 能力介绍
 #### 接口能力
-- **人脸识别**: 提取图片中人脸的128维(gaius)特征值
+- **人脸识别**: 输入3*128*128的图片，提取图片中人脸的128维(gaius)特征值
 #### 依赖项
 - **CPU**: MSVCP140、VCRUNTIME140
 ### 调用方式
@@ -79,3 +79,17 @@ int main()
 
 - 返回值
 `std::vector<std::vector<float>>`类型, vector包含了提取到的128维人脸特征信息，外层维度大小为人脸图片数量，内层维度大小为128。
+
+#### Gaius Performance
+Test one 3*128*128(channels * height * width) face image on platform i7-8700K, loop 1000 times and calculate average extractTime. 
+
+Item | Description
+:-:|:-:
+Operating System | Windows 10 Enterprise 64bit |
+Processor | Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz |
+Core and Thread | 6 Cores and 12 Threads |
+RAM | 32GB |
+Compiler | MSVC 19.5 |
+OpenMP | Yes |
+SIMD Instruction Set | AVX2 |
+extractTime(ms) | 54.191 |
