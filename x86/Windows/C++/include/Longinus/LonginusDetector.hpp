@@ -10,7 +10,7 @@
 #ifdef USE_OPENCV
 #include <opencv2/opencv.hpp>
 #endif
-#ifndef TRIAL
+#ifdef TRIAL
 #include "../Damocles/Damocles.hpp"
 #endif // !TRIAL
 
@@ -162,7 +162,7 @@ namespace glasssix
 			std::vector<unsigned char> data_;
 			std::unique_ptr<Matcher> matcher_;
 
-#ifndef TRIAL
+#ifdef TRIAL
 			std::unique_ptr<vDamocles> diodorus_;
 #endif // !TRIAL
 
