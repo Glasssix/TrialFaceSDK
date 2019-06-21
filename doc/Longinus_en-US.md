@@ -351,13 +351,15 @@ SIMD Instruction Set | AVX2 |
 
 ##### Test Report
 
-minSize=48, scale=1.2, minNeighbors=3, useMultiThreads=false, doEarlyReject=false
+Parameter: minSize=48, scale=1.2, minNeighbors=3, useMultiThreads=false, doEarlyReject=false
+
 Detect Time(ms)：
+
 Image_Size | FRONTALVIEW | FRONTALVIEW_REINFORCE | MULTIVIEW | MULTIVIEW_REINFORCE
 :-:|:-:|:-:|:-:|:-:
-640 \* 480 |49.279 | 87.724 | 114.125 | 129.541
-1280 \* 720 | 109.317 | 142.942 | 195.54 | 229.027
-1920 \* 1080 | 242.114 | 376.091 | 537.808 | 682.978
+640 * 480 | 49.279 | 87.724 | 114.125 | 129.541 |
+1280 * 720 | 109.317 | 142.942 | 195.54 | 229.027 |
+1920 * 1080 | 242.114 | 376.091 | 537.808 | 682.978 |
 
 ![avatar](./640.jpg)
 ![avatar](./720.jpg)
