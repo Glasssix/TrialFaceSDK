@@ -308,33 +308,6 @@ int main(int argc, char** argv)
 |is_new|bool|对该人脸区域的判定是否为一个新的人脸序列| |
 
 
-
-#### 示例代码四
-```c++
-#include <opencv2/opencv.hpp>
-#include "InternalRomanciaCascade.hpp"
-
-using namespace glasssix;
-using namespace glasssix::longinus;
-
-int main()
-{
-	InternalRomanciaCascade cascade;
-	cascade.LoadCascade(FRONTAL, device);
-	cv::Mat img = cv::imread("../TestImage/3.jpg");
-	cv::Mat gray;
-	cv::cvtColor(img, gray, CV_BGR2GRAY);
-	tensor<unsigned char> tensor_gray({ 1, 1, gray.rows, gray.cols });
-	memcpy(tensor_gray.mutable_cpu_data(), gray.data, tensor_gray.count() * sizeof(unsigned char));
-	std::vector<FaceRect> rects = cascade.MultiScaleDetect(tensor_gray, 24, 1.1f, 3, false, false);
-	for (int i = 0; i < rects.size(); i++)
-		cv::rectangle(img, cv::Rect(rects[i].x, rects[i].y, rects[i].width, rects[i].height), cv::Scalar(0, 255, 0));
-	cv::imshow("hehe", img);
-	cv::waitKey(0);
-	return 0;
-}
-```
-
 #### Longinus性能表现
 在i7-8700K平台使用640 \* 480,1280 \* 720,1920 \* 1080三张人脸图片分别进行测试，每张图片循环1000次计算得到平均检测时间。
 

@@ -308,33 +308,6 @@ Capability: set an uuid for each input face area, judge whether it's new in vide
 |is_new|bool|flag to judge whether this face area belongs to a new person| |
 
 
-
-#### Example Code 4th:
-```c++
-#include <opencv2/opencv.hpp>
-#include "InternalRomanciaCascade.hpp"
-
-using namespace glasssix;
-using namespace glasssix::longinus;
-
-int main()
-{
-	InternalRomanciaCascade cascade;
-	cascade.LoadCascade(FRONTAL, device);
-	cv::Mat img = cv::imread("../TestImage/3.jpg");
-	cv::Mat gray;
-	cv::cvtColor(img, gray, CV_BGR2GRAY);
-	tensor<unsigned char> tensor_gray({ 1, 1, gray.rows, gray.cols });
-	memcpy(tensor_gray.mutable_cpu_data(), gray.data, tensor_gray.count() * sizeof(unsigned char));
-	std::vector<FaceRect> rects = cascade.MultiScaleDetect(tensor_gray, 24, 1.1f, 3, false, false);
-	for (int i = 0; i < rects.size(); i++)
-		cv::rectangle(img, cv::Rect(rects[i].x, rects[i].y, rects[i].width, rects[i].height), cv::Scalar(0, 255, 0));
-	cv::imshow("hehe", img);
-	cv::waitKey(0);
-	return 0;
-}
-```
-
 #### Longinus Performance
 Test three face images(size: 640 \* 480,1280 \* 720,1920 \* 1080) on platform i7-8700K: loop 1000 times and calculate average detect time. 
 
