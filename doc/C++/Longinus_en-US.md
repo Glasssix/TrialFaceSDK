@@ -7,7 +7,7 @@
 #### Dependencies
 - **CPU**: MSVCP140、VCRUNTIME140
 ### Invoke Method
-#### Example Code 1st
+#### Example Code 1
 ```c++
 #include <opencv2/opencv.hpp>
 #include "Longinus/LonginusDetector.hpp"
@@ -22,7 +22,7 @@ int main()
 	LonginusDetector detector;
 	detector.set(FRONTALVIEW, device);
 	
-	cv::Mat img = cv::imread("../TestImage/2.png");
+	cv::Mat img = cv::imread("../img/exciting.png");
 	cv::Mat gray;
 	cv::cvtColor(img, gray, CV_BGR2GRAY);
 	std::vector<FaceRect> rects = detector.detect(gray.data, gray.cols, gray.rows, gray.step[0], 24, 1.1f, 3, false, false);
@@ -34,7 +34,7 @@ int main()
 	return 0;
 }
 ```
-#### Class Description: RomanciaDetector
+#### Class Description: LonginusDetector
 ##### Member Function`void set(DetectionType detectionType, int device);`
 Capability: set detect method and device
 
@@ -43,13 +43,6 @@ Capability: set detect method and device
 |detectionType|enum DetectionType|FRONTALVIEW<br>FRONTALVIEW_REINFORCE<br>MULTIVIEW<br> MULTIVIEW_REINFORCE||detect effect and time consuming both ascend|
 |device|int|`<0`<br>`>=0`|use cpu<br>use gpu numberd by 'device'| |
 
-##### Member Function`void load(std::vector<std::string> cascades, int device = -1);`
-Capability: load classifier model
-
-|Parameter|Parameter Type|Value|Illustration|Remark|
-|:--------:|:--------:|:--------:|:--------:|:--------:|
-|cascades|`std::vector<std::string>`|user input|each element in vector represents a model file|model file in xml format|
-|device|int|`<0`<br>`>=0`|use cpu<br>use gpu numberd by 'device'| |
 
 ##### Member Function`std::vector<FaceRect> detect(unsigned char *gray, int width, int height, int step, int minSize, float scale, int min_neighbors, bool useMultiThreads = false, bool doEarlyReject = false);`
 Capability: detect and locate face in single-channel image
@@ -81,7 +74,7 @@ Capability: detect and locate face in single-channel image
 |confidence|double|possibility to be a face||
 
 
-#### Example Code 2nd:
+#### Example Code 2:
 ```c++
 #include <opencv2/opencv.hpp>
 #include <iostream>
@@ -95,7 +88,7 @@ int main()
 {
 	//transform color image to gray image
 	Mat src_image, gray_image;
-	src_image = imread("D:/xiaoyuankeji.jpg");
+	src_image = imread("../img/exciting.png");
 	cvtColor(src_image, gray_image, CV_BGR2GRAY);
 
 	//detect face rect
@@ -215,7 +208,7 @@ Capability: Align Face
 #### Interface Capability
 - **Face Match**: input detect result of consecutive video frame, then judge whether faces belong to a same person. Take effect when camera position is fixed.
 ### Invoke Method
-#### Example Code 3rd:
+#### Example Code 3:
 ```c++
 #include <iostream>
 #include <opencv2/opencv.hpp>
