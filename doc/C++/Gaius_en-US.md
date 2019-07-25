@@ -68,18 +68,6 @@ Capability: extract 128-dimension feature vector
 - Return Value
 `std::vector<std::vector<float>>`, 128-dimension face feature vector, outer size of vector is the number of face images, inner size of vector is 128.
 
-##### Member Function`std::vector<std::vector<float>> Forward(const unsigned char* inputData, int num, int order = 0);`
-Capability: extract 128-dimension feature vector
-
-|Parameter|Parameter Type|Value|Illustration|Remark|
-|:--------:|:--------:|:--------:|:--------:|:--------:|
-|inputData|`const unsigned char*`|user input|face image data||
-|num|int|`>0`|number of face images| |
-|order|int||array of face image data:NCHW/NHWC|order=0(NCHW),otherwise(NHWC)|
-
-- Return Value
-`std::vector<std::vector<float>>`, 128-dimension face feature vector, outer size of vector is the number of face images, inner size of vector is 128.
-
 #### Gaius Performance
 Test one 3*128*128(channels * height * width) face image on platform i7-8700K, loop 1000 times and calculate average extractTime. 
 

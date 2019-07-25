@@ -3,7 +3,7 @@
 ## Face Detect V1.0(TrialFaceSDK)
 ### Capability Introduction
 #### Interface Capability
-- **Face Detect**: Detect face in images, and calculate possibility, angle, position of key points(eyes, nose, mouse)
+- **Face Detect**: Detect face in images, and calculate possibility, angle, position of key points(eyes, nose, mouth)
 #### Dependencies
 - **CPU**: MSVCP140、VCRUNTIME140
 ### Invoke Method
