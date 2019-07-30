@@ -55,7 +55,7 @@ Capability: extract 128-dimension feature vector
 - Return Value
 `float[][]`, 128-dimension face feature vector, outer size of vector is the number of face images, inner size of vector is 128.
 
-#### Gaius Performance
+#### Gaiulinya Performance
 Test one 3\times 128\times 128(channels \times  height \times  width) face image on platform i7-8700K, loop 1000 times and calculate average extractTime. 
 
 Item | Description

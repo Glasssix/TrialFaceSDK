@@ -23,7 +23,7 @@ The binary dynamic library(with documentation) names of each module in every pro
 
 | 	Langrage\\ Module Name	| Face Detect and Alignment | Face Feature Extractor | Face Feature Search |
 | :-------: | :-------:| :------: | :------: |
-| C++     	|  [Longinus](./doc/C++/Longinus_en-US.md)| [Gaius](./doc/C++/Gaius_en-US.md) | [Irisvian](./doc/C++/Irisvian_en-US.md) |
+| C++     	|  [Longinus](./doc/C++/Longinus_en-US.md)| [Gaius](./doc/C++/Gaius_en-US.md) | [Irisviel](./doc/C++/Irisviel_en-US.md) |
 | C#   		|[Longinucia](./doc/C#/Longinucia_en-US.md)|[Gaiunia](./doc/C#/Gaiunia_en-US.md) | [Irisvian](./doc/C#/Irisvian_en-US.md) |
 | Java  	|[Longimila](./doc/Java/Longimila_en-US.md)|[Gaiulinya](./doc/Java/Gaiulinya_en-US.md) | [Irisvika](./doc/Java/Irisvika_en-US.md) |
 
