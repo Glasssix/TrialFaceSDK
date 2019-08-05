@@ -36,7 +36,7 @@ internal class Program
 }
 ```
 
-#### Example 2: Builda the Graph and Then Search the Image When the Count of Faces Is Greater Than 1.
+#### Example 2: Build the Graph and Then Search the Image When the Count of Faces Is Greater Than 1.
 
 ```C#
 using System;
