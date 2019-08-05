@@ -1,7 +1,7 @@
 ## Face Recognition V1.0(TrialFaceSDK)
 ### Capability Introduction
 #### Interface Capability
-- **Face Recognition**: Extract the 128-dimensional feature vector (known as *Gaius*) of a 3 \* 128 \* 128 image containing at least one face.
+- **Face Recognition**: Extracts the 128-dimensional feature vector (known as *Gaius*) of a 3 \* 128 \* 128 image containing at least one face.
 
 #### Dependencies
 - **CPU**：
