@@ -24,22 +24,58 @@
 #### 示例代码一：人脸库数量等于 1，直接调用 ```SearchVector``` 进行人脸验证（1 : 1）
 
 ```C#
+using System;
+using glasssix::gaius;
 
+internal class Program
+{
+	static void Main(string[] args)
+	{
+
+	}
+}
 ```
 
 #### 示例代码二：人脸库数量大于 1，构建图，然后执行搜索。
 ```C#
+using System;
+using glasssix::gaius;
 
+internal class Program
+{
+	static void Main(string[] args)
+	{
+
+	}
+}
 ```
 
 #### 示例代码三：人脸库数量大于 1，构建并保存构建的图，然后执行搜索。
 ```C#
+using System;
+using glasssix::gaius;
 
+internal class Program
+{
+	static void Main(string[] args)
+	{
+
+	}
+}
 ```
 
 #### 示例代码四：人脸库数量大于 1，不构建，从磁盘读取已构建的图，然后执行搜索。
 ```C#
+using System;
+using glasssix::gaius;
 
+internal class Program
+{
+	static void Main(string[] args)
+	{
+
+	}
+}
 ```
 
 #### IrisvianSearch 类

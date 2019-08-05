@@ -24,25 +24,61 @@
 #### Example 1：Do the (1:1) Face Verification When the Count of Faces Equals 1.
 
 ```C#
+using System;
+using glasssix::gaius;
 
+internal class Program
+{
+	static void Main(string[] args)
+	{
+
+	}
+}
 ```
 
 #### Example 2: Builda the Graph and Then Search the Image When the Count of Faces Is Greater Than 1.
 
 ```C#
+using System;
+using glasssix::gaius;
 
+internal class Program
+{
+	static void Main(string[] args)
+	{
+
+	}
+}
 ```
 
 #### Example 3: Build the Graph, Save It to The Disk and Then Search the Image When the Count of Faces Is Greater Than 1.
 
 ```C#
+using System;
+using glasssix::gaius;
 
+internal class Program
+{
+	static void Main(string[] args)
+	{
+
+	}
+}
 ```
 
 #### Example 4: Load the Built Graph From The Disk and Then Search the Image When the Count of Faces Is Greater Than 1.
 
 ```C#
+using System;
+using glasssix::gaius;
 
+internal class Program
+{
+	static void Main(string[] args)
+	{
+
+	}
+}
 ```
 
 #### IrisvianSearch Class
