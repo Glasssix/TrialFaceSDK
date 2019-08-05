@@ -25,13 +25,22 @@
 
 ```C#
 using System;
-using glasssix::gaius;
+using glasssix.irisvian;
 
 internal class Program
 {
+	private const int DIMENSION = 128;
+
 	static void Main(string[] args)
 	{
+		// We assume that there is a valid single feature here.
+		var singleFeature = new float[DIMENSION];
 
+		using (var searcher = new IrisvianSearcher(new[] { singleFeature }, DIMENSION))
+		{
+			// We simply use the same feature to search itself.
+			var results = searcher.SearchVector(new[] { singleFeature }, out var similarities);
+		}
 	}
 }
 ```
@@ -39,27 +48,111 @@ internal class Program
 #### 示例代码二：人脸库数量大于 1，构建图，然后执行搜索。
 ```C#
 using System;
-using glasssix::gaius;
+using glasssix.irisvian;
+using System.Collections.Generic;
 
 internal class Program
 {
+	// This block needs "/unsafe" to be enabled.
+	private unsafe static IList<float[]> LoadBaseData(string path)
+	{
+		using (var fs = File.OpenRead(path))
+		{
+			var result = new List<float[]>();
+			var buffer = new byte[DIMENSION * sizeof(float)];
+
+			fixed (byte* ptr = buffer)
+			{
+				// We assume that all data are arranged continuously.
+				while (fs.Read(buffer, 0, buffer.Length) == buffer.Length)
+				{
+					// Copy the data to a floating-point array.
+					var feature = new float[DIMENSION];
+					Marshal.Copy(new IntPtr(ptr), feature, 0, feature.Length);
+
+					result.Add(feature);
+				}
+			}
+
+			return result;
+		}
+	}
+
 	static void Main(string[] args)
 	{
+		// Load the test data.
+		var baseData = LoadBaseData(@"D:\YourTestData.bin");
 
+		using (var searcher = new IrisvianSearcher(baseData, DIMENSION))
+		{
+			// Build the graph.
+			searcher.BuildGraph();
+
+			// Optimize the graph.
+			searcher.OptimizeGraph();
+
+			// Search the image.
+			var queryData = new float[DIMENSION] {/*The feature data of an image*/};
+
+			var results = searcher.SearchVector(new[] { queryData }, out var similarities);
+		}
 	}
-}
 ```
 
 #### 示例代码三：人脸库数量大于 1，构建并保存构建的图，然后执行搜索。
 ```C#
 using System;
-using glasssix::gaius;
+using glasssix.irisvian;
+using System.Collections.Generic;
 
 internal class Program
 {
+	// This block needs "/unsafe" to be enabled.
+	private unsafe static IList<float[]> LoadBaseData(string path)
+	{
+		using (var fs = File.OpenRead(path))
+		{
+			var result = new List<float[]>();
+			var buffer = new byte[DIMENSION * sizeof(float)];
+
+			fixed (byte* ptr = buffer)
+			{
+				// We assume that all data are arranged continuously.
+				while (fs.Read(buffer, 0, buffer.Length) == buffer.Length)
+				{
+					// Copy the data to a floating-point array.
+					var feature = new float[DIMENSION];
+					Marshal.Copy(new IntPtr(ptr), feature, 0, feature.Length);
+
+					result.Add(feature);
+				}
+			}
+
+			return result;
+		}
+	}
+
 	static void Main(string[] args)
 	{
+		// Load the test data.
+		var baseData = LoadBaseData(@"D:\YourTestData.bin");
 
+		using (var searcher = new IrisvianSearcher(baseData, DIMENSION))
+		{
+			// Build the graph.
+			searcher.BuildGraph();
+
+			// Optimize the graph.
+			searcher.OptimizeGraph();
+
+			// Search the image.
+			var queryData = new float[DIMENSION] {/*The feature data of an image*/};
+
+			var results = searcher.SearchVector(new[] { queryData }, out var similarities);
+
+			// Save the result.
+			searcher.SaveResult(@"D:\Results.bin", results);
+		}
 	}
 }
 ```
@@ -67,13 +160,24 @@ internal class Program
 #### 示例代码四：人脸库数量大于 1，不构建，从磁盘读取已构建的图，然后执行搜索。
 ```C#
 using System;
-using glasssix::gaius;
+using glasssix.irisvian;
+using System.Collections.Generic;
 
 internal class Program
 {
 	static void Main(string[] args)
 	{
+		// Load the test data.
+		using (var searcher = new IrisvianSearcher(DIMENSION))
+		{
+			// Load the graph.
+			searcher.LoadGraph(@"D:\Save.graph")
 
+			// Search the image.
+			var queryData = new float[DIMENSION] {/*The feature data of an image*/};
+
+			var results = searcher.SearchVector(new[] { queryData }, out var similarities);
+		}
 	}
 }
 ```

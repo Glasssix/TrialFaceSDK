@@ -12,13 +12,21 @@
 #### Example 1: Simple Usage
 ```C#
 using System;
-using glasssix::gaius;
+using System.Drawing;
+using glasssix.gaius;
 
 internal class Program
 {
 	static void Main(string[] args)
 	{
+      // The size of the bitmap must be 128x128.
+      var bitmap = Bitmap.FromFile(@"D:\body.png");
 
+      using (var extractor = new Gaiunia(-1))
+      {
+         // Fetch the feature vector.
+         var feature128 = extractor.ExtractBitmapOutputs(bitmap);
+      }
 	}
 }
 ```

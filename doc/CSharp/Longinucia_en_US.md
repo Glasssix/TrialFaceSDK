@@ -11,13 +11,21 @@
 #### Example 1
 ```C#
 using System;
-using glasssix::gaius;
+using System.Drawing;
+using glasssix.longinus;
 
 internal class Program
 {
 	static void Main(string[] args)
 	{
+      var bitmap = Bitmap.FromFile(@"D:\Test.png");
 
+      
+      using (var detector = new Longinucia())
+      {
+         // Fetch the faces.
+         var faces = detector.Face_Detect(bitmap, 24, 1.1f, 3, false, false, true);
+      }
 	}
 }
 ```
