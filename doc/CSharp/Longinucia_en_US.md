@@ -40,7 +40,7 @@ Description: sets the method of detection.
 |Name|Type|Value|Description|Remark|
 |:---:|:---:|:---:|:---:|:---:|
 |type|```DetectorType```|FRONTALVIEW<br>FRONTALVIEW_REINFORCE<br>MULTIVIEW<br> MULTIVIEW_REINFORCE|The values is arranged in descending order of speed.||
-|device|int|```<0```<br>```>=0```|Sets the CPU as the physical device.<br>Sets the GPU as the physical device.| |
+|device|```int```|```<0```<br>```>=0```|Sets the CPU as the physical device.<br>Sets the GPU as the physical device.| |
 
 ##### Method ```public List<FaceInfo> Face_Detect(Bitmap bmp, int min_size, float scale, int minNeighbors, bool useMultiThreads, bool doEarlyReject, bool doLandmark)```
 Description: invokes face detection on the input grayscale bitmap and locates the faces.
@@ -69,7 +69,6 @@ RAM | 32GB |
 Compiler | MSVC 19.5 |
 OpenMP | Yes |
 SIMD Instruction Set | AVX2 |
-
 
 ##### Test Results
 

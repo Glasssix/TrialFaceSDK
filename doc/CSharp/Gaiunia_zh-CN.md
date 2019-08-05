@@ -23,13 +23,13 @@ internal class Program
 }
 ```
 
-#### ```Gaiunia``` 类说明
+#### ```Gaiunia``` 类
 ##### 构造函数 ```public Gaiunia(int device)```
-功能：创建一个 Gaiunia 类的实例。由用户指定参与运算的物理设备。
+功能：创建一个 Gaiunia 类的实例，由用户指定参与运算的物理设备。
 
 |参数|参数类型|值|说明|备注|
 |:---:|:---:|:---:|:---:|:---:|
-|device|int|`<0`<br>`>=0`|使用 CPU 作为物理设备<br>使用设备号为 device 的 GPU 作为物理设备| |
+|device|```int```|`<0`<br>`>=0`|使用 CPU 作为物理设备<br>使用设备号为 device 的 GPU 作为物理设备| |
 
 ##### 方法 ```public float[] ExtractBitmapOutputs(Bitmap[] imgData)```
 功能：进行人脸识别，提取 128 维特征值。

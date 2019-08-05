@@ -23,7 +23,7 @@ internal class Program
 }
 ```
 
-#### ```Longinucia``` 类说明
+#### ```Longinucia``` 类
 ##### 构造函数 ```public Longinucia()```
 功能：创建一个 Longinucia 类的实例。
 
