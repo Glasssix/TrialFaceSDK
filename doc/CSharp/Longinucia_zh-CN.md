@@ -20,7 +20,7 @@ internal class Program
 	static void Main(string[] args)
 	{
       var bitmap = Bitmap.FromFile(@"D:\Test.png");
-
+      
       using (var detector = new Longinucia())
       {
          // Fetch the faces.
