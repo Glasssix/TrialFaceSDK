@@ -11,22 +11,55 @@
 #### Example 1
 ```C#
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using glasssix.longinus;
 
-internal class Program
+namespace CSharpExample
 {
-	static void Main(string[] args)
-	{
-      var bitmap = Bitmap.FromFile(@"D:\Test.png");
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int device = -1;
+            Bitmap bmp = new Bitmap(@"D:\720.jpg");
+            Longinucia longinucia = new Longinucia();
+            longinucia.set(DetectorType.MULTIVIEW_REINFORCE, device);
+            var res = longinucia.Face_Detect(bmp, 24, 1.1f, 3, false, false, true);
 
-      
-      using (var detector = new Longinucia())
-      {
-         // Fetch the faces.
-         var faces = detector.Face_Detect(bitmap, 24, 1.1f, 3, false, false, true);
-      }
-	}
+            var aligned_faces = longinucia.AlignFace(bmp, res);
+            for (int i = 0; i < aligned_faces.Length; i++)
+            {
+                aligned_faces[i].Save(@"D:\720_align" + i + ".jpg");
+            }
+
+            for (int i = 0; i < res.Count; i++)
+            {
+                DrawRectangleInPicture(bmp,
+                    new Rectangle(res[i].rect.X, res[i].rect.Y, res[i].rect.Width, res[i].rect.Height), Color.Azure, 2,
+                    DashStyle.Dash);
+            }
+            bmp.Save(@"D:\720_res.jpg");
+
+            return;
+        }
+
+        public static Bitmap DrawRectangleInPicture(Bitmap bmp, Rectangle rect, Color RectColor, int LineWidth, DashStyle ds)
+        {
+            if (bmp == null) return null;
+            Graphics g = Graphics.FromImage(bmp);
+            Brush brush = new SolidBrush(RectColor);
+            Pen pen = new Pen(brush, LineWidth);
+            pen.DashStyle = ds;
+            g.DrawRectangle(pen, rect);
+            g.Dispose();
+            return bmp;
+        }
+    }
 }
 ```
 
@@ -63,6 +96,24 @@ Description: invokes face detection on the input grayscale bitmap and locates th
 |doEarlyReject|```bool```|```true```<br>```false```|Does early rejections<br>Skips early rejections|Speeds up the detection when set to ```true``` with a decreasing quality; otherwise the opposite. The default is ```false``` .|
 
 - Returns: a ```List<FaceInfo>``` which contains information about detected faces.
+
+##### Method ```public void set(DetectorType type, int device)```
+Description: sets the method of detection.
+
+|Name|Type|Value|Description|Remark|
+|:---:|:---:|:---:|:---:|:---:|
+|type|```DetectorType```|FRONTALVIEW<br>FRONTALVIEW_REINFORCE<br>MULTIVIEW<br> MULTIVIEW_REINFORCE|The values is arranged in descending order of speed.||
+|device|```int```|```<0```<br>```>=0```|Sets the CPU as the physical device.<br>Sets the GPU as the physical device.| |
+
+##### Method ```public Bitmap[] AlignFace(Bitmap bmp, List<FaceInfo> infos)```
+Description: align detected faces.
+
+|Name|Type|Value|Description|Remark|
+|:---:|:---:|:---:|:---:|:---:|
+|bmp|```Bitmap```|User Input|The grayscale bitmap, same with Face_Detect method||
+|infos|```List<FaceInfo>```||information about detected faces|The returned value of Face_Detect.|
+
+- Returns: an array of ```Bitmap``` which contains aligned faces, image size is 3*128*128(channel,height,width).
 
 #### Longinus Performance
 The following table reveals the testing results deduced by calculating the average time of 1,000-time extractions on three images (640 \* 480、1280 \* 720 and 1920 \* 1080), on Platform i7-8700K.

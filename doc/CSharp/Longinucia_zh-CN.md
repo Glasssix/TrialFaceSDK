@@ -12,21 +12,55 @@
 #### 示例代码一
 ```C#
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using glasssix.longinus;
 
-internal class Program
+namespace CSharpExample
 {
-	static void Main(string[] args)
-	{
-      var bitmap = Bitmap.FromFile(@"D:\Test.png");
-      
-      using (var detector = new Longinucia())
-      {
-         // Fetch the faces.
-         var faces = detector.Face_Detect(bitmap, 24, 1.1f, 3, false, false, true);
-      }
-	}
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int device = -1;
+            Bitmap bmp = new Bitmap(@"D:\720.jpg");
+            Longinucia longinucia = new Longinucia();
+            longinucia.set(DetectorType.MULTIVIEW_REINFORCE, device);
+            var res = longinucia.Face_Detect(bmp, 24, 1.1f, 3, false, false, true);
+
+            var aligned_faces = longinucia.AlignFace(bmp, res);
+            for (int i = 0; i < aligned_faces.Length; i++)
+            {
+                aligned_faces[i].Save(@"D:\720_align" + i + ".jpg");
+            }
+
+            for (int i = 0; i < res.Count; i++)
+            {
+                DrawRectangleInPicture(bmp,
+                    new Rectangle(res[i].rect.X, res[i].rect.Y, res[i].rect.Width, res[i].rect.Height), Color.Azure, 2,
+                    DashStyle.Dash);
+            }
+            bmp.Save(@"D:\720_res.jpg");
+
+            return;
+        }
+
+        public static Bitmap DrawRectangleInPicture(Bitmap bmp, Rectangle rect, Color RectColor, int LineWidth, DashStyle ds)
+        {
+            if (bmp == null) return null;
+            Graphics g = Graphics.FromImage(bmp);
+            Brush brush = new SolidBrush(RectColor);
+            Pen pen = new Pen(brush, LineWidth);
+            pen.DashStyle = ds;
+            g.DrawRectangle(pen, rect);
+            g.Dispose();
+            return bmp;
+        }
+    }
 }
 ```
 
@@ -63,6 +97,16 @@ internal class Program
 |doEarlyReject|```bool```|```true```<br>```false```|采取早期拒绝<br>不采取早期拒绝|设置为 ```true``` 时可提高检测速度，但检测效果下降；设置 ```false``` 则相反。默认值 ```false```。|
 
 - 返回：```List<FaceInfo>``` 类型，包含了每一个检测到的人脸区域、关键点和人脸概率信息。
+
+##### 方法 ```public Bitmap[] AlignFace(Bitmap bmp, List<FaceInfo> infos)```
+功能：对输入灰度图做人脸检测并标定人脸位置。
+
+|参数|参数类型|值|说明|备注|
+|:---:|:---:|:---:|:---:|:---:|
+|bmp|```Bitmap```|用户输入|灰度图, 与Face_Detect函数输入相同||
+|infos|```List<FaceInfo>```| |检测到的人脸信息|Face_Detect函数的返回结果|
+
+- 返回：```Bitmap[]``` 类型，包含了对齐后的人脸，图片为128*128的3通道图像。
 
 #### Longinus 性能表现
 在 i7-8700K 平台使用 640 \* 480、1280 \* 720 和 1920 \* 1080三张人脸图片分别进行测试，每张图片循环 1000 次计算得到平均检测时间。
