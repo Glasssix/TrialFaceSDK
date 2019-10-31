@@ -327,8 +327,8 @@ Image_Size | FRONTALVIEW | FRONTALVIEW_REINFORCE | MULTIVIEW | MULTIVIEW_REINFOR
 1280 * 720 | 26.14 | 45.44 | 69.09 | 85.07 |
 1920 * 1080 | 76.59 | 122.38 | 155.89 | 186.86 |
 
-![image](../640.jpg)
-![image](../720.jpg)
-![image](../1080.jpg)
+![image](https://github.com/Glasssix/TrialFaceSDK/blob/master/doc/640.jpg)
+![image](https://github.com/Glasssix/TrialFaceSDK/blob/master/doc/720.jpg)
+![image](https://github.com/Glasssix/TrialFaceSDK/blob/master/doc/1080.jpg)
 
 Declaration: Test face images come from Internet, all rights belong to original Author. If we infringed your legal rights, please contact us to erase images. Thanks!
