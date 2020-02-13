@@ -7,8 +7,8 @@ Glasssix TrialFaceSDK is a free SDK for face recognition without any restriction
 ### Features
 
 - Light Weighted. The package size of Windows(C++) edition is less than 10MB(9.91MB).
-- Dependency Free. No third-party library dependencies, does not rely on BLAS / NNPACK or any other computing framework.
-- Fast and Accurate. We designed our algorithm carefully, and adopt accelerating technique such as OpenMP, SIMD.
+- Dependency Free. No third-party library dependencies, does not rely on BLAS（http://www.netlib.org/blas/） / NNPACK（https://github.com/Maratyszcza/NNPACK） or any other computing framework.
+- Fast and Accurate. We designed our algorithm carefully, and adopt accelerating technique such as OpenMP（https://www.openmp.org/）, SIMD（http://www.thinkwiki.org/wiki/SIMD）.
 - Powerful. We provide many interfaces in TrialFaceSDK, they can meet requirements in different use cases.
 - Clear User Guidance. Example code and interface illustration are accessible in [Documentations](./doc).
 - Excellent Compatibility. Glasssix TrialFaceSDK can work on different platforms: Windows(64bit), Linux(64bit), ARM Linux(Coming soon) and Android(Coming soon).
@@ -23,6 +23,7 @@ The binary dynamic library(with documentation) names of each module in every pro
 
 | 	Langrage\\ Module Name	| Face Detect and Alignment | Face Feature Extractor | Face Feature Search |
 | :-------: | :-------:| :------: | :------: |
+| C     	|  [Longinus_c](./doc/C/Longinus_en-US.md)| [Gaius_c](./doc/C/Gaius_en-US.md) | [Irisviel_c](./doc/C/Irisviel_en-US.md) |
 | C++     	|  [Longinus](./doc/C++/Longinus_en-US.md)| [Gaius](./doc/C++/Gaius_en-US.md) | [Irisviel](./doc/C++/Irisviel_en-US.md) |
 | C#   		|[Longinucia](./doc/CSharp/Longinucia_en_US.md)|[Gaiunia](./doc/CSharp/Gaiunia_en_US.md) | [Irisvian](./doc/CSharp/Irisvian_en-US.md) |
 | Java  	|[Longimila](./doc/Java/Longimila_en-US.md)|[Gaiulinya](./doc/Java/Gaiulinya_en-US.md) | [Irisvika](./doc/Java/Irisvika_en-US.md) |
