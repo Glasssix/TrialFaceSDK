@@ -137,11 +137,11 @@ return 0;
 |[roll](https://en.wikipedia.org/wiki/Euler_angles)|float|头部基于x轴的旋转角度(范围 -180 and 180 度)| |
 
 ##### 成员函数 ：int Longinus_detectEx(LonginusDetector* instance, FaceRectWithFaceInfo** ptr, unsigned char* image, int height, int width, int minSize,float* threshold, float factor, int stage,int order);
-##### 功能：在RGB图中检测并定位人脸区域,同时获取bboxs信息
+##### 功能：在RGB图中检测并定位人脸区域,获取bboxs和landmarks信息
 ##### 返回值：int, 检测出的人脸个数, 大于等于0
 
 ##### 成员函数 ：int Longinus_detectEx_Mobile(LonginusDetector* instance, FaceRectWithFaceInfo** ptr, unsigned char* image, int height, int width, int minSize,float* threshold, float factor, int stage,int order);
-##### 功能：在RGB图中检测并定位人脸区域,同时获取bboxs信息
+##### 功能：在RGB图中检测并定位人脸区域,获取bboxs和landmarks信息
 ##### 返回值：int, 检测出的人脸个数, 大于等于0
 
 |参数|参数类型|值|说明|备注|
@@ -170,7 +170,7 @@ return 0;
 | Longinus_alignFace   | 对齐人脸|  返回n个对齐后的人脸数据首地址, 以NCHW排列|
 | Longinus_alignFaceFromCropped        |  从已按1.4倍bbox宽高裁剪的图上对齐人脸|返回n个对齐后的人脸数据首地址, 以NCHW排列|
 
-##### 成员函数 ：unsigned char* Longinus_alignFace( LonginusDetector* instance,unsigned char* ori_image, int n, int height,int* width,int* bbox, int landmarks);
+##### 成员函数 ：unsigned char* Longinus_alignFace( LonginusDetector* instance,unsigned char* ori_image, int n, int height,int width,int* bbox, int* landmarks);
 ##### 功能：对齐人脸
 ##### 返回值：返回n个对齐后的人脸数据首地址, 以NCHW排列。
 
@@ -188,15 +188,15 @@ return 0;
 |landmarks|int*|用户输入|一维int数组指针,依次存放每个人脸landmark的x1,y1,x2,y2,x3,y3,x4,y4,x5,y5| |
 
 
-##### 成员函数 ： bool Longinus_blur_judge_vsl( LonginusDetector* instance,unsigned char* vsl_color_image, int height,int width,int n, int* bbox, int* landmarks,float* thresh, float value, int order);
+##### 成员函数 ： bool Longinus_blur_judge_vsl( LonginusDetector* instance,unsigned char* vsl_color_image, int height,int width,int n, int* bbox, int* landmarks,float* thresh, float** value, int order);
 ##### 功能：判断从可见光图像检测到的人脸是否模糊
 ##### 返回值：返回true时表示人脸图像清晰可用。
 
-##### 成员函数 ： bool Longinus_black_white_judge_vsl( LonginusDetector* instance,unsigned char* vsl_color_image, int height,int width,int n, int* bbox, int* landmarks,float* thresh, float value, int order);
+##### 成员函数 ： bool Longinus_black_white_judge_vsl( LonginusDetector* instance,unsigned char* vsl_color_image, int height,int width,int n, int* bbox, int* landmarks,float* thresh, float** value, int order);
 ##### 功能：判断采集的可见光图像内容是否为黑白照片
 ##### 返回值：返回true时表示图像可用，图像内容不是黑白照片。。
 
-##### 成员函数 ：bool Longinus_face_nose_judge_vsl( LonginusDetector* instance,unsigned char* nir_color_image, int height,int width,int n, int* bbox, int* landmarks,float* thresh, float value, int order);
+##### 成员函数 ：bool Longinus_face_nose_judge_vsl( LonginusDetector* instance,unsigned char* nir_color_image, int height,int width,int n, int* bbox, int* landmarks,float* thresh, float** value, int order);
 ##### 功能：判断从可见光图像检测到的人脸是否模糊
 ##### 返回值：返回true时，表示检测到真实人脸。
 <br>
@@ -208,10 +208,10 @@ return 0;
 |n|int|用户输入|需进行模糊判断的人脸数(模糊判断)<br>需进行黑白判断的人脸数(黑白图片判断)<br>需进行认识人脸判断的人脸数(真实人脸判断)| |
 |width|int|用户输入|原始灰度图宽| |
 |height|int|用户输入|原始灰度图高| |
-|bboxes|int|用户输入|一维int数组指针, 依次存放每个人脸bbox的x, y, w, h| |
-|landmarks|int|用户输入|一维int数组指针,依次存放每个人脸landmark的<br>x1,y1,x2,y2,x3,y3,x4,y4,x5,y5| |
-|thresh|float|用户输入|评判阈值，包含2个元素的一维float数组首地址|默认取值[0.6,0] (模糊判断)<br>默认取值 [30,0] (黑白图片判断)<br>默认取值 [0.9,0.85] (真实人脸判断)|
-|value|float|用户输入|仅调试时需要，包含2个元素的一维float数组首地址,<br> 表示神经网络模型实际的计算结果，与thresh对比得到返回的bool值||
+|bboxes|int*|用户输入|一维int数组指针, 依次存放每个人脸bbox的x, y, w, h| |
+|landmarks|int*|用户输入|一维int数组指针,依次存放每个人脸landmark的<br>x1,y1,x2,y2,x3,y3,x4,y4,x5,y5| |
+|thresh|float*|用户输入|评判阈值，包含2个元素的一维float数组首地址|默认取值[0.6,0] (模糊判断)<br>默认取值 [30,0] (黑白图片判断)<br>默认取值 [0.9,0.85] (真实人脸判断)|
+|value|float**|用户输入|仅调试时需要，包含2个元素的一维float数组首地址,<br> 表示神经网络模型实际的计算结果，与thresh对比得到返回的bool值||
 |order|int|order=0(NCHW)<br>否则(NHWC)|人脸数据的排列方式:[NCHW/NHWC](https://www.cnblogs.com/sunny-li/p/9630305.html)||
 
 ### 依赖项
