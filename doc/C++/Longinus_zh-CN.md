@@ -1,13 +1,18 @@
-
-
 ## 人脸检测V1.0(TrialFaceSDK)
-### 能力介绍
-#### 接口能力
-- **人脸检测**: 检测图片中人脸，并计算出人脸概率、人脸角度、关键点（眼、鼻、嘴）位置等信息
-#### 依赖项
-- **CPU**: MSVCP140、VCRUNTIME140
-### 调用方式
-#### 示例代码一
+###接口功能
+>人脸检测: 检测图片中人脸，并计算出人脸概率，绘制人脸矩形框，关键点（眼、鼻、嘴）位置等信息。
+
+####速览: LonginusDetector
+
+
+>| 核心函数        | 功能   |  返回值  |
+|  :--------:   |  :--------:  | :--------:  |
+| Longinucia_detect    | 在灰度图中检测并定位人脸区域，获取bboxs信息  |  int,检测出的人脸个数, >=0     |
+| Longinucia_detectWithInfo        |   在灰度图中检测并定位人脸区域，获取bboxs和landmarks信息|   int,检测出的人脸个数, >=0  |
+| Longinucia\_detectEx        |   在RGB图中检测并定位人脸区域 ,获取bboxs和landmarks信息 |  int,检测出的人脸个数, >=0 |
+| Longinucia\_detectEx\_Mobile        |     在RGB图中检测并定位人脸区域 ,获取bboxs和landmarks信息     |  int,检测出的人脸个数, >=0 |
+
+#### 示例代码
 ```c++
 #include <opencv2/opencv.hpp>
 #include "Longinus/LonginusDetector.hpp"
