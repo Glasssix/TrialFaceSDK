@@ -98,13 +98,13 @@ return 0;
 |detection<br>Type| int|0=FRONTALVIEW <br> 1=FRONTALVIEW<br>_REINFORCE<br> 2=MULTIVIEW <br> 3= MULTIVIEW <br> _REINFORCE |正脸快速检测<br>正脸加强检测 <br>多角度检测<br> 多角度加强检测|检测效果依次变强<br>检测速度依次变慢|
 |device|int|`<0`<br>`>=0`|使用cpu<br>使用设备号为<br>device的gpu
 
-##### 成员函数 ：int Longinus_detect(LonginusDetector *instance, FaceRect** ptr, unsigned char gray, int width, int height, int step, int minSize, float scale,min_neighbors)
+##### 成员函数 ：int Longinus_detect(LonginusDetector* instance, FaceRect** ptr, unsigned char gray, int width, int height, int step, int minSize, float scale,min_neighbors)
 ##### 功能：在灰度图中检测并定位人脸区域,同时获取bboxs信息
 ##### 返回值：int, 检测出的人脸个数, 大于等于0
 
-##### 成员函数 ：int Longinus_detectWithInfo(LonginusDetector *instance, FaceRectWithFaceInfo **ptr, unsigned char gray, int width, int height, int step, int minSize, float scale,min_neighbors,int order)
-#####功能：在灰度图中检测并定位人脸区域,同时获取bboxs和landmarks信息
-#####返回值：int, 检测出的人脸个数, 大于等于0
+##### 成员函数 ：int Longinus_detectWithInfo(LonginusDetector* instance, FaceRectWithFaceInfo** ptr, unsigned char gray, int width, int height, int step, int minSize, float scale,min_neighbors,int order)
+##### 功能：在灰度图中检测并定位人脸区域,同时获取bboxs和landmarks信息
+##### 返回值：int, 检测出的人脸个数, 大于等于0
 <br>
 
 |参数|参数类型|值|说明|备注|
@@ -136,11 +136,11 @@ return 0;
 |[pitch](https://en.wikipedia.org/wiki/Euler_angles)|float|头部基于y轴的旋转角度(范围 -90 and 90 度)| |
 |[roll](https://en.wikipedia.org/wiki/Euler_angles)|float|头部基于x轴的旋转角度(范围 -180 and 180 度)| |
 
-##### 成员函数 ：int Longinus_detectEx(LonginusDetector *instance, FaceRectWithFaceInfo** ptr, unsigned char* image, int height, int width, int minSize,float* threshold, float factor, int stage,int order);
+##### 成员函数 ：int Longinus_detectEx(LonginusDetector* instance, FaceRectWithFaceInfo** ptr, unsigned char* image, int height, int width, int minSize,float* threshold, float factor, int stage,int order);
 ##### 功能：在RGB图中检测并定位人脸区域,同时获取bboxs信息
 ##### 返回值：int, 检测出的人脸个数, 大于等于0
 
-##### 成员函数 ：int Longinus_detectEx_Mobile(LonginusDetector instance, FaceRectWithFaceInfo** ptr, unsigned char* image, int height, int width, int minSize,float* threshold, float factor, int stage,int order);
+##### 成员函数 ：int Longinus_detectEx_Mobile(LonginusDetector* instance, FaceRectWithFaceInfo** ptr, unsigned char* image, int height, int width, int minSize,float* threshold, float factor, int stage,int order);
 ##### 功能：在RGB图中检测并定位人脸区域,同时获取bboxs信息
 ##### 返回值：int, 检测出的人脸个数, 大于等于0
 
@@ -170,11 +170,11 @@ return 0;
 | Longinus_alignFace   | 对齐人脸|  返回n个对齐后的人脸数据首地址, 以NCHW排列|
 | Longinus_alignFaceFromCropped        |  从已按1.4倍bbox宽高裁剪的图上对齐人脸|返回n个对齐后的人脸数据首地址, 以NCHW排列|
 
-##### 成员函数 ：unsigned char Longinus_alignFace( LonginusDetector *instance,unsigned char ori_image, int n, int height,int width,int bbox, int landmarks);
+##### 成员函数 ：unsigned char* Longinus_alignFace( LonginusDetector* instance,unsigned char* ori_image, int n, int height,int* width,int* bbox, int landmarks);
 ##### 功能：对齐人脸
 ##### 返回值：返回n个对齐后的人脸数据首地址, 以NCHW排列。
 
-##### 成员函数 ：unsigned char Longinus_alignFaceFromCropped( LonginusDetector *instance,unsigned char ori_image, int n, int height,int width,int bbox, int landmarks);
+##### 成员函数 ：unsigned char* Longinus_alignFaceFromCropped( LonginusDetector* instance,unsigned char* ori_image, int n, int height,int width,int* bbox, int* landmarks);
 ##### 功能：从已按1.4倍bbox宽高裁剪的图上对齐人脸
 ##### 返回值：返回n个对齐后的人脸数据首地址, 以NCHW排列。
 
@@ -184,19 +184,19 @@ return 0;
 |n|int|用户输入|原始灰度图片张数,设为1| |
 |width|int|用户输入|原始灰度图宽| |
 |height|int|用户输入|原始灰度图高| |
-|bboxes|int|用户输入|一维int数组指针, 依次存放每个人脸bbox的x, y, w, h| |
-|landmarks|int|用户输入|一维int数组指针,依次存放每个人脸landmark的x1,y1,x2,y2,x3,y3,x4,y4,x5,y5| |
+|bboxes|int*|用户输入|一维int数组指针, 依次存放每个人脸bbox的x, y, w, h| |
+|landmarks|int*|用户输入|一维int数组指针,依次存放每个人脸landmark的x1,y1,x2,y2,x3,y3,x4,y4,x5,y5| |
 
 
-##### 成员函数 ： bool Longinus_blur_judge_vsl( LonginusDetector *instance,unsigned char* vsl_color_image, int height,int width,int n, int* bbox, int* landmarks,float* thresh, float value, int order);
+##### 成员函数 ： bool Longinus_blur_judge_vsl( LonginusDetector* instance,unsigned char* vsl_color_image, int height,int width,int n, int* bbox, int* landmarks,float* thresh, float value, int order);
 ##### 功能：判断从可见光图像检测到的人脸是否模糊
 ##### 返回值：返回true时表示人脸图像清晰可用。
 
-##### 成员函数 ： bool Longinus_black_white_judge_vsl( LonginusDetector *instance,unsigned char* vsl_color_image, int height,int width,int n, int* bbox, int* landmarks,float* thresh, float value, int order);
+##### 成员函数 ： bool Longinus_black_white_judge_vsl( LonginusDetector* instance,unsigned char* vsl_color_image, int height,int width,int n, int* bbox, int* landmarks,float* thresh, float value, int order);
 ##### 功能：判断采集的可见光图像内容是否为黑白照片
 ##### 返回值：返回true时表示图像可用，图像内容不是黑白照片。。
 
-##### 成员函数 ：bool Longinus_face_nose_judge_vsl( LonginusDetector *instance,unsigned char* nir_color_image, int height,int width,int n, int* bbox, int* landmarks,float* thresh, float value, int order);
+##### 成员函数 ：bool Longinus_face_nose_judge_vsl( LonginusDetector* instance,unsigned char* nir_color_image, int height,int width,int n, int* bbox, int* landmarks,float* thresh, float value, int order);
 ##### 功能：判断从可见光图像检测到的人脸是否模糊
 ##### 返回值：返回true时，表示检测到真实人脸。
 <br>
