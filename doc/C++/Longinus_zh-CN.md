@@ -1,16 +1,14 @@
 ## 人脸检测V1.0(TrialFaceSDK)
 ### 接口功能
 >人脸检测: 检测图片中人脸，并计算出人脸概率，绘制人脸矩形框，关键点（眼、鼻、嘴）位置等信息。
-
 #### 速览: LonginusDetector
-
-
 >| 核心函数        | 功能   |  返回值  |
 |  :--------:   |  :--------:  | :--------:  |
-| Longinucia_detect    | 在灰度图中检测并定位人脸区域，获取bboxs信息  |  int,检测出的人脸个数, >=0     |
-| Longinucia_detectWithInfo        |   在灰度图中检测并定位人脸区域，获取bboxs和landmarks信息|   int,检测出的人脸个数, >=0  |
-| Longinucia\_detectEx        |   在RGB图中检测并定位人脸区域 ,获取bboxs和landmarks信息 |  int,检测出的人脸个数, >=0 |
-| Longinucia\_detectEx\_Mobile        |     在RGB图中检测并定位人脸区域 ,获取bboxs和landmarks信息     |  int,检测出的人脸个数, >=0 |
+| Longinus_detect    | 在灰度图中检测并定位人脸区域，获取bboxs信息  |  int,检测出的人脸个数, >=0     |
+| Longinus_detectWithInfo        |   在灰度图中检测并定位人脸区域，获取bboxs和landmarks信息|   int,检测出的人脸个数, >=0  |
+| Longinus\_detectEx        |   在RGB图中检测并定位人脸区域 ,获取bboxs和landmarks信息 |  int,检测出的人脸个数, >=0 |
+| Longinus\_detectEx\_Mobile        |     在RGB图中检测并定位人脸区域 ,获取bboxs和landmarks信息     |  int,检测出的人脸个数, >=0 |
+
 
 #### 示例代码
 ```c++
@@ -343,5 +341,7 @@ Image_Size | FRONTALVIEW | FRONTALVIEW_REINFORCE | MULTIVIEW | MULTIVIEW_REINFOR
 ![avatar](../640.jpg)
 ![avatar](../720.jpg)
 ![avatar](../1080.jpg)
+
+
 
 声明：测试图片来源于网络，版权归原作者所有，如有侵权，请联系删除，谢谢。
