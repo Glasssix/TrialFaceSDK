@@ -218,7 +218,8 @@ return 0;
 >CPU: MSVCP140、VCRUNTIME140 
 
 ### 效果图
-![avatar](./01.jpg)
+<img src="../001.jpg" width = "550" height = "620" div align=center />
+
 
 ### 性能测试
 
