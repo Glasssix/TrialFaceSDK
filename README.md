@@ -34,7 +34,7 @@ This trial face SDK is developed by GLASSSIX. The open source is now released un
 
 * [C++ Example](./x86/Windows/C++/README.md)
 
-### Download links
+### [Download links](https://glasssix.github.io/download/)(For faster download)
 * [Windows](./x86/Windows). Compiled with MSVC 19.10.
 * [Linux](./x86/Linux). Compiled with GCC 7.4.
 
