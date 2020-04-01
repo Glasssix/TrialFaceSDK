@@ -1,4 +1,4 @@
-# [Glasssix TrialFaceSDK](https://glasssix.github.io/) ### .New URL
+# [Glasssix TrialFaceSDK](https://glasssix.github.io/) New URL
 
 Glasssix TrialFaceSDK is a free SDK for face recognition without any restrictions. 
 
