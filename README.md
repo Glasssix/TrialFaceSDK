@@ -1,4 +1,4 @@
-# [Glasssix TrialFaceSDK](https://glasssix.github.io/) New URL
+# [Glasssix TrialFaceSDK](https://glasssix.github.io/) New URL Link
 
 Glasssix TrialFaceSDK is a free SDK for face recognition without any restrictions. 
 
@@ -23,7 +23,6 @@ The binary dynamic library(with documentation) names of each module in every pro
 
 | 	Langrage\\ Module Name	| Face Detect and Alignment | Face Feature Extractor | Face Feature Search |
 | :-------: | :-------:| :------: | :------: |
-| C     	|  [Longinus_c](./doc/C/Longinus_en-US.md)| [Gaius_c](./doc/C/Gaius_en-US.md) | [Irisviel_c](./doc/C/Irisviel_en-US.md) |
 | C++     	|  [Longinus](./doc/C++/Longinus_en-US.md)| [Gaius](./doc/C++/Gaius_en-US.md) | [Irisviel](./doc/C++/Irisviel_en-US.md) |
 | C#   		|[Longinucia](./doc/CSharp/Longinucia_en_US.md)|[Gaiunia](./doc/CSharp/Gaiunia_en_US.md) | [Irisvian](./doc/CSharp/Irisvian_en-US.md) |
 | Java  	|[Longimila](./doc/Java/Longimila_en-US.md)|[Gaiulinya](./doc/Java/Gaiulinya_en-US.md) | [Irisvika](./doc/Java/Irisvika_en-US.md) |
