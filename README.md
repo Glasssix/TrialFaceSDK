@@ -1,4 +1,4 @@
-# Glasssix TrialFaceSDK
+# [Glasssix TrialFaceSDK](https://glasssix.github.io/) New URL
 
 Glasssix TrialFaceSDK is a free SDK for face recognition without any restrictions. 
 
@@ -7,8 +7,8 @@ Glasssix TrialFaceSDK is a free SDK for face recognition without any restriction
 ### Features
 
 - Light Weighted. The package size of Windows(C++) edition is less than 10MB(9.91MB).
-- Dependency Free. No third-party library dependencies, does not rely on BLAS / NNPACK or any other computing framework.
-- Fast and Accurate. We designed our algorithm carefully, and adopt accelerating technique such as OpenMP, SIMD.
+- Dependency Free. No third-party library dependencies, does not rely on [BLAS](http://www.netlib.org/blas/)  / [NNPACK](https://github.com/Maratyszcza/NNPACK)or any other computing framework.
+- Fast and Accurate. We designed our algorithm carefully, and adopt accelerating technique such as [OpenMP](https://www.openmp.org/), [SIMD](http://www.thinkwiki.org/wiki/SIMD).
 - Powerful. We provide many interfaces in TrialFaceSDK, they can meet requirements in different use cases.
 - Clear User Guidance. Example code and interface illustration are accessible in [Documentations](./doc).
 - Excellent Compatibility. Glasssix TrialFaceSDK can work on different platforms: Windows(64bit), Linux(64bit), ARM Linux(Coming soon) and Android(Coming soon).
@@ -33,7 +33,7 @@ This trial face SDK is developed by GLASSSIX. The open source is now released un
 
 * [C++ Example](./x86/Windows/C++/README.md)
 
-### Download links
+### [Download links](https://glasssix.github.io/download/)(For more faster download)
 * [Windows](./x86/Windows). Compiled with MSVC 19.10.
 * [Linux](./x86/Linux). Compiled with GCC 7.4.
 
